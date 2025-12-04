@@ -930,160 +930,161 @@ class VirtualMicrobit {
         bindSensor('sensor-compass', 'compass');
         bindSensor('sensor-tilt-x', 'acceleration', 'x');
         bindSensor('sensor-tilt-y', 'acceleration', 'y');
+    }
 
-        initGrid() {
-            this.gridElement.innerHTML = '';
-            this.leds = [];
-            for (let y = 0; y < 5; y++) {
-                let row = [];
-                for (let x = 0; x < 5; x++) {
-                    const led = document.createElement('div');
-                    led.className = 'led';
-                    led.dataset.x = x;
-                    led.dataset.y = y;
-                    this.gridElement.appendChild(led);
-                    row.push(led);
-                }
-                this.leds.push(row);
+    initGrid() {
+        this.gridElement.innerHTML = '';
+        this.leds = [];
+        for (let y = 0; y < 5; y++) {
+            let row = [];
+            for (let x = 0; x < 5; x++) {
+                const led = document.createElement('div');
+                led.className = 'led';
+                led.dataset.x = x;
+                led.dataset.y = y;
+                this.gridElement.appendChild(led);
+                row.push(led);
             }
-        }
-
-        clear() {
-            this.stopAnimation();
-            this.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
-            this.statusElement.textContent = "等待指令...";
-        }
-
-        plot(x, y) {
-            if (x >= 0 && x < 5 && y >= 0 && y < 5) {
-                this.leds[y][x].classList.add('on');
-            }
-        }
-
-        unplot(x, y) {
-            if (x >= 0 && x < 5 && y >= 0 && y < 5) {
-                this.leds[y][x].classList.remove('on');
-            }
-        }
-
-        toggle(x, y) {
-            if (x >= 0 && x < 5 && y >= 0 && y < 5) {
-                this.leds[y][x].classList.toggle('on');
-            }
-        }
-
-        showIcon(iconName, preventStop = false) {
-            if (!preventStop) {
-                this.clear();
-            } else {
-                // Just clear LEDs, don't stop animation
-                this.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
-            }
-
-            const icons = {
-                "HEART": [
-                    "01010",
-                    "11111",
-                    "11111",
-                    "01110",
-                    "00100"
-                ],
-                "HEART_SMALL": [
-                    "00000",
-                    "01010",
-                    "01110",
-                    "00100",
-                    "00000"
-                ],
-                "HAPPY": [
-                    "00000",
-                    "01010",
-                    "00000",
-                    "10001",
-                    "01110"
-                ],
-                "SAD": [
-                    "00000",
-                    "01010",
-                    "00000",
-                    "01110",
-                    "10001"
-                ],
-                "CHECK": [
-                    "00000",
-                    "00001",
-                    "00010",
-                    "10100",
-                    "01000"
-                ]
-            };
-
-            const pattern = icons[iconName];
-            if (pattern) {
-                if (!preventStop) this.statusElement.textContent = `顯示圖示: ${iconName}`;
-                pattern.forEach((row, y) => {
-                    for (let x = 0; x < 5; x++) {
-                        if (row[x] === '1') this.plot(x, y);
-                    }
-                });
-            }
-        }
-
-        stopAnimation() {
-            if (this.animationInterval) {
-                clearInterval(this.animationInterval);
-                this.animationInterval = null;
-            }
-        }
-
-        // Animation Helpers
-        animateHeartBeat() {
-            this.stopAnimation();
-            this.statusElement.textContent = "執行程式: 心跳動畫";
-            let state = 0;
-            this.animationInterval = setInterval(() => {
-                if (state === 0) {
-                    this.showIcon("HEART", true);
-                    state = 1;
-                } else {
-                    this.showIcon("HEART_SMALL", true);
-                    state = 0;
-                }
-            }, 500);
-        }
-
-        animateMeteor() {
-            this.stopAnimation();
-            this.statusElement.textContent = "執行程式: 流星燈";
-            let x = 0;
-            this.animationInterval = setInterval(() => {
-                this.leds.forEach(row => row.forEach(led => led.classList.remove('on'))); // Clear manually to avoid stopping interval
-                this.plot(x, 2);
-                x++;
-                if (x > 4) x = 0;
-            }, 200);
-        }
-
-        animateCoordinates() {
-            this.stopAnimation();
-            this.statusElement.textContent = "顯示座標點 (0,0), (2,2), (4,4)";
-            this.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
-            this.plot(0, 0);
-            this.plot(2, 2);
-            this.plot(4, 4);
+            this.leds.push(row);
         }
     }
 
-    // --- APP LOGIC ---
+    clear() {
+        this.stopAnimation();
+        this.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+        this.statusElement.textContent = "等待指令...";
+    }
 
-    const mb = new VirtualMicrobit();
+    plot(x, y) {
+        if (x >= 0 && x < 5 && y >= 0 && y < 5) {
+            this.leds[y][x].classList.add('on');
+        }
+    }
 
-    const slideContent = document.getElementById('slideContent');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const slideCounter = document.getElementById('slideCounter');
-    const progressFill = document.getElementById('progressFill');
-    const weekSelector = document.getElementById('weekSelector');
+    unplot(x, y) {
+        if (x >= 0 && x < 5 && y >= 0 && y < 5) {
+            this.leds[y][x].classList.remove('on');
+        }
+    }
+
+    toggle(x, y) {
+        if (x >= 0 && x < 5 && y >= 0 && y < 5) {
+            this.leds[y][x].classList.toggle('on');
+        }
+    }
+
+    showIcon(iconName, preventStop = false) {
+        if (!preventStop) {
+            this.clear();
+        } else {
+            // Just clear LEDs, don't stop animation
+            this.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+        }
+
+        const icons = {
+            "HEART": [
+                "01010",
+                "11111",
+                "11111",
+                "01110",
+                "00100"
+            ],
+            "HEART_SMALL": [
+                "00000",
+                "01010",
+                "01110",
+                "00100",
+                "00000"
+            ],
+            "HAPPY": [
+                "00000",
+                "01010",
+                "00000",
+                "10001",
+                "01110"
+            ],
+            "SAD": [
+                "00000",
+                "01010",
+                "00000",
+                "01110",
+                "10001"
+            ],
+            "CHECK": [
+                "00000",
+                "00001",
+                "00010",
+                "10100",
+                "01000"
+            ]
+        };
+
+        const pattern = icons[iconName];
+        if (pattern) {
+            if (!preventStop) this.statusElement.textContent = `顯示圖示: ${iconName}`;
+            pattern.forEach((row, y) => {
+                for (let x = 0; x < 5; x++) {
+                    if (row[x] === '1') this.plot(x, y);
+                }
+            });
+        }
+    }
+
+    stopAnimation() {
+        if (this.animationInterval) {
+            clearInterval(this.animationInterval);
+            this.animationInterval = null;
+        }
+    }
+
+    // Animation Helpers
+    animateHeartBeat() {
+        this.stopAnimation();
+        this.statusElement.textContent = "執行程式: 心跳動畫";
+        let state = 0;
+        this.animationInterval = setInterval(() => {
+            if (state === 0) {
+                this.showIcon("HEART", true);
+                state = 1;
+            } else {
+                this.showIcon("HEART_SMALL", true);
+                state = 0;
+            }
+        }, 500);
+    }
+
+    animateMeteor() {
+        this.stopAnimation();
+        this.statusElement.textContent = "執行程式: 流星燈";
+        let x = 0;
+        this.animationInterval = setInterval(() => {
+            this.leds.forEach(row => row.forEach(led => led.classList.remove('on'))); // Clear manually to avoid stopping interval
+            this.plot(x, 2);
+            x++;
+            if (x > 4) x = 0;
+        }, 200);
+    }
+
+    animateCoordinates() {
+        this.stopAnimation();
+        this.statusElement.textContent = "顯示座標點 (0,0), (2,2), (4,4)";
+        this.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+        this.plot(0, 0);
+        this.plot(2, 2);
+        this.plot(4, 4);
+    }
+}
+
+// --- APP LOGIC ---
+
+const mb = new VirtualMicrobit();
+
+const slideContent = document.getElementById('slideContent');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const slideCounter = document.getElementById('slideCounter');
+const progressFill = document.getElementById('progressFill');
+const weekSelector = document.getElementById('weekSelector');
 
 // Populate Week Selector
 function initWeekSelector() {
