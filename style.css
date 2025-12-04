@@ -1,0 +1,638 @@
+:root {
+    --bg-dark: #0f172a;
+    --bg-panel: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.5);
+    --code-bg: #000000;
+    --font-main: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Slide Panel (Left) */
+.slide-panel {
+    width: 40%;
+    min-width: 400px;
+    background-color: var(--bg-panel);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #334155;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #334155;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
+    /* Reset margin */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.week-selector {
+    background-color: #334155;
+    color: white;
+    border: 1px solid #475569;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.week-selector:focus {
+    border-color: var(--accent-color);
+}
+
+.progress-bar {
+    height: 4px;
+    background-color: #334155;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.slide-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+ul,
+ol {
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+code {
+    font-family: var(--font-mono);
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: #e2e8f0;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid #334155;
+}
+
+.step-box {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.step-box h3 {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+/* Controls (Bottom Left) */
+.controls {
+    padding: 1.5rem;
+    border-top: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-panel);
+}
+
+.nav-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-main);
+}
+
+.nav-btn:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.nav-btn:disabled {
+    background-color: #334155;
+    color: #64748b;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.slide-counter {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Right Panel: Virtual Micro:bit */
+.editor-panel {
+    flex: 1;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#virtualMicrobitContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.microbit-board {
+    width: 320px;
+    height: 300px;
+    background-color: #111;
+    /* Slightly lighter black for contrast */
+    border-radius: 30px;
+    position: relative;
+    box-shadow:
+        0 0 0 4px #2a2a2a,
+        0 15px 30px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    /* V2 Shape: Notched top */
+    clip-path: path("M 0 20 Q 0 0 20 0 L 80 0 Q 90 0 95 10 L 105 10 Q 110 0 120 0 L 200 0 Q 210 0 215 10 L 225 10 Q 230 0 240 0 L 300 0 Q 320 0 320 20 L 320 280 Q 320 300 300 300 L 20 300 Q 0 300 0 280 Z");
+
+    /* Red Pattern Top Left */
+    background-image:
+        linear-gradient(135deg, #ce0e2d 25%, transparent 25%),
+        linear-gradient(135deg, #ce0e2d 25%, transparent 25%),
+        linear-gradient(135deg, #ce0e2d 25%, transparent 25%);
+    background-size: 100px 100px;
+    background-position: -50px -50px, -30px -30px, -10px -10px;
+    /* Overlapping triangles hack */
+    /* Actually, let's use a cleaner single gradient for the corner */
+    background:
+        conic-gradient(from 180deg at 60px 40px, transparent 0deg, transparent 45deg, #ce0e2d 45deg, #ce0e2d 135deg, transparent 135deg),
+        conic-gradient(from 180deg at 90px 10px, transparent 0deg, transparent 45deg, #ce0e2d 45deg, #ce0e2d 135deg, transparent 135deg),
+        linear-gradient(135deg, #ce0e2d 0%, #ce0e2d 15%, transparent 15%);
+    background-repeat: no-repeat;
+    background-color: #111;
+}
+
+/* Fallback for clip-path if needed, but path is better for the notch */
+
+.microbit-header {
+    position: static;
+    display: block;
+}
+
+.microbit-logo-icon {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 30px;
+    /* User provided pill shape logo: Gold ring with two dots */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cdefs%3E%3ClinearGradient id='gold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e6c96a'/%3E%3Cstop offset='50%25' stop-color='%23d4af37'/%3E%3Cstop offset='100%25' stop-color='%23b8860b'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Outer Ring (Pill) --%3E%3Crect x='5' y='5' width='90' height='50' rx='25' fill='none' stroke='url(%23gold)' stroke-width='10'/%3E%3C!-- Two Dots --%3E%3Ccircle cx='35' cy='30' r='8' fill='url(%23gold)'/%3E%3Ccircle cx='65' cy='30' r='8' fill='url(%23gold)'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 15px;
+    box-shadow: none;
+    z-index: 10;
+}
+
+.microbit-logo-icon:active,
+.microbit-logo-icon.active {
+    filter: brightness(1.5) drop-shadow(0 0 5px #ffd700);
+    transform: translateX(-50%) scale(0.95);
+}
+
+/* Microphone Indicator (V2) */
+.mic-indicator {
+    position: absolute;
+    top: 32px;
+    right: 75px;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 2px solid #d4af37;
+    /* Gold ring */
+    border-radius: 50%;
+    box-shadow: none;
+}
+
+/* Mic Icon SVG inside the ring */
+.mic-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'%3E%3Cpath d='M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z'/%3E%3Cpath d='M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.mic-led {
+    position: absolute;
+    top: 35px;
+    right: 60px;
+    width: 4px;
+    height: 4px;
+    background-color: #300;
+    border-radius: 50%;
+}
+
+.mic-led.on {
+    background-color: #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+}
+
+.led-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+    padding: 10px;
+    background: transparent;
+}
+
+.led {
+    width: 10px;
+    height: 14px;
+    /* Rectangular */
+    background-color: #333;
+    /* Dark grey off state */
+    border-radius: 2px;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.8);
+    transition: background-color 0.1s, box-shadow 0.1s;
+}
+
+.led.on {
+    background-color: #ff0000;
+    box-shadow:
+        0 0 8px #ff0000,
+        0 0 15px #ff0000;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+    position: absolute;
+    top: 120px;
+}
+
+.btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.mb-btn {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    border: 2px solid #444;
+    border-radius: 4px;
+    /* Slightly squarish buttons on V2? No, usually round but let's check image. Image shows round buttons inside square housing? No, round buttons. */
+    border-radius: 50%;
+    color: transparent;
+    /* Hide text */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.mb-btn:active {
+    transform: scale(0.9);
+    background: #222;
+}
+
+.btn-label {
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    color: #000;
+    /* Text inside triangle is black? Or transparent cut? Image shows Black text on Red triangle. */
+    font-size: 0.8rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 0;
+}
+
+.label-a {
+    background-color: #ce0e2d;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    /* Triangle pointing bottom-left? No. */
+    /* Image: Triangle to the bottom-left of button A. */
+    bottom: -10px;
+    left: -15px;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    /* Bottom-Left triangle */
+    color: transparent;
+    /* Actually let's just make a shape */
+}
+
+/* Wait, the image shows:
+   Button A: Triangle pointing UP-RIGHT towards the button.
+   Let's try to match the "uploaded_image_1764873100948.png"
+   It has a red triangle labeled 'A' pointing to the button.
+   Let's just use a simple red triangle with text next to it.
+*/
+.label-a {
+    background: #ce0e2d;
+    color: #000;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    /* Pointing Left */
+    /* Actually let's just place text A and B with a red background shape */
+    width: auto;
+    height: auto;
+    background: none;
+    clip-path: none;
+    color: #ce0e2d;
+    font-size: 1.2rem;
+    font-weight: 900;
+    top: 45px;
+    left: 5px;
+}
+
+/* Re-evaluating the image:
+   Button A: "A" is below-left.
+   Button B: "B" is below-right.
+   There are red triangles.
+   Let's just put "A" and "B" text in red, bold, below the buttons.
+*/
+.label-a {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    color: #ce0e2d;
+    font-size: 1.2rem;
+}
+
+.label-b {
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    color: #ce0e2d;
+    font-size: 1.2rem;
+}
+
+.pins-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background: #d4af37;
+    /* Gold */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.pin {
+    font-size: 0.7rem;
+    color: #000;
+    font-weight: bold;
+
+    .editor-panel {
+        height: 60%;
+    }
+}
+
+/* Sensor Controls */
+.sensor-controls {
+    margin-top: 20px;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+}
+
+.sensor-group {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sensor-group label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.sensor-group input[type=range] {
+    width: 100%;
+    accent-color: var(--accent-color);
+}
+
+#simulation-status {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+}
+
+/* MakeCode Block Styles */
+.block {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    margin: 2px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+    vertical-align: middle;
+}
+
+.b-basic {
+    background-color: #1E90FF;
+}
+
+/* Blue */
+.b-input {
+    background-color: #D400D4;
+}
+
+/* Purple */
+.b-music {
+    background-color: #E63022;
+}
+
+/* Red */
+.b-led {
+    background-color: #5C2D91;
+}
+
+/* Dark Purple */
+.b-loops {
+    background-color: #00AA00;
+}
+
+/* Green */
+.b-logic {
+    background-color: #00A4A6;
+}
+
+/* Teal */
+.b-vars {
+    background-color: #DC143C;
+}
+
+/* Crimson */
+.b-math {
+    background-color: #9400D3;
+}
+
+/* Violet */
+
+.block-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    border-left: 4px solid var(--accent-color);
+}
+
+.block-row {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.indent {
+    margin-left: 20px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    padding-left: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .slide-panel {
+        width: 100%;
+        height: 40%;
+        min-width: auto;
+    }
+
+    .editor-panel {
+        height: 60%;
+    }
+}
