@@ -869,9 +869,378 @@ const weeks = [
             }
         ]
     },
-    { name: "第 4 週：進階遊戲邏輯", slides: [{ title: "第四週預告", content: "<p>第四週內容擴充中...</p>" }] },
-    { name: "第 5 週：專題 - 銀河保衛者 (上)", slides: [{ title: "第五週預告", content: "<p>第五週內容擴充中...</p>" }] },
-    { name: "第 6 週：專題 - 銀河保衛者 (下)", slides: [{ title: "第六週預告", content: "<p>第六週內容擴充中...</p>" }] }
+    {
+        name: "第 4 週：進階遊戲邏輯",
+        slides: [
+            {
+                title: "第四週：進階遊戲邏輯",
+                content: `
+                    <p>歡迎來到遊戲開發的前哨站！</p>
+                    <p>在開始製作「銀河保衛者」之前，我們需要先熟悉一些遊戲設計的核心觀念。</p>
+                    <div class="step-box">
+                        <h3>本週目標</h3>
+                        <ul>
+                            <li><strong>遊戲迴圈 (Game Loop)</strong>：遊戲是怎麼動起來的？</li>
+                            <li><strong>精靈 (Sprite)</strong>：如何用變數控制角色？</li>
+                            <li><strong>碰撞偵測 (Collision)</strong>：怎麼知道兩個東西撞在一起？</li>
+                            <li>實作小遊戲：「接金幣」。</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "遊戲迴圈 (Game Loop)",
+                content: `
+                    <p>所有的遊戲，其實都是一個跑不停的「無限迴圈」。</p>
+                    <div class="step-box">
+                        <h3>遊戲的三步驟</h3>
+                        <ol>
+                            <li><strong>輸入</strong>：讀取按鈕、感測器。</li>
+                            <li><strong>更新</strong>：計算角色移動、分數變化。</li>
+                            <li><strong>繪製</strong>：把畫面畫在 LED 上。</li>
+                        </ol>
+                    </div>
+                    <p>這三個步驟每秒鐘重複幾十次，看起來就像是連續的動畫。</p>
+                `
+            },
+            {
+                title: "角色控制：精靈 (Sprite)",
+                content: `
+                    <p>在遊戲中，我們通常把會動的東西叫做「精靈」。</p>
+                    <p>要控制一個精靈，我們至少需要兩個變數：</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-var">變數 PlayerX</span> (左右位置)</div>
+                        <div class="block-row"><span class="block b-var">變數 PlayerY</span> (上下位置)</div>
+                    </div>
+                    <p>只要改變這兩個變數，精靈就會移動！</p>
+                `
+            },
+            {
+                title: "實作：移動的光點 (1/2)",
+                content: `
+                    <p>我們來試著用變數控制一個光點。</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">當啟動時</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 X 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 Y 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-led">點亮 x: X y: Y</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "實作：移動的光點 (2/2)",
+                content: `
+                    <p>接著讓它往右跑！</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-input">當按鈕 B 被按下</span></div>
+                        <div class="block-row indent"><span class="block b-led">滅掉 x: X y: Y</span> (先擦掉舊的)</div>
+                        <div class="block-row indent"><span class="block b-var">變數 X 改變 1</span> (移動)</div>
+                        <div class="block-row indent"><span class="block b-led">點亮 x: X y: Y</span> (畫上新的)</div>
+                    </div>
+                    <p>這就是角色移動的基本原理：<strong>擦掉 -> 移動 -> 重畫</strong>。</p>
+                `
+            },
+            {
+                title: "碰撞偵測 (Collision) (1/2)",
+                content: `
+                    <p>怎麼知道「吃到金幣」或是「撞到牆壁」了？</p>
+                    <p>我們需要比較 **座標**。</p>
+                    <div class="step-box">
+                        <h3>邏輯判斷</h3>
+                        <p>如果 (玩家X == 金幣X) 且 (玩家Y == 金幣Y)</p>
+                        <p>那麼 -> 得分！</p>
+                    </div>
+                `
+            },
+            {
+                title: "碰撞偵測 (Collision) (2/2)",
+                content: `
+                    <p>那怎麼知道「撞到牆壁」？</p>
+                    <div class="step-box">
+                        <h3>邊界檢查</h3>
+                        <p>如果 (X > 4) -> 撞到右牆</p>
+                        <p>如果 (X < 0) -> 撞到左牆</p>
+                    </div>
+                    <p>在寫遊戲時，我們要隨時檢查這些條件。</p>
+                `
+            },
+            {
+                title: "小遊戲：接金幣 (1/3)",
+                content: `
+                    <p>我們來做一個簡單的練習：</p>
+                    <p>玩家在最下面 (Y=4) 左右移動，接住天上掉下來的金幣。</p>
+                    <div class="step-box">
+                        <h3>變數設定</h3>
+                        <ul>
+                            <li><strong>PlayerX</strong>：玩家位置 (0~4)。</li>
+                            <li><strong>CoinX</strong>：金幣位置 (隨機)。</li>
+                            <li><strong>CoinY</strong>：金幣高度 (0~4)。</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "小遊戲：接金幣 (2/3)",
+                content: `
+                    <p>金幣掉落的邏輯：</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                        <div class="block-row indent"><span class="block b-led">滅掉 x: CoinX y: CoinY</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 CoinY 改變 1</span></div>
+                        <div class="block-row indent"><span class="block b-led">點亮 x: CoinX y: CoinY</span></div>
+                        <div class="block-row indent"><span class="block b-basic">暫停 500 ms</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "小遊戲：接金幣 (3/3)",
+                content: `
+                    <p>最後加上碰撞判斷：</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 CoinY == 4 且 CoinX == PlayerX</span></div>
+                        <div class="block-row indent"><span class="block b-basic">顯示圖示 (愛心)</span> (接到啦！)</div>
+                    </div>
+                    <p>這就是下週「銀河保衛者」的雛形喔！</p>
+                `
+            },
+            {
+                title: "第四週總結",
+                content: `
+                    <p>這週我們學會了遊戲開發的三大支柱：</p>
+                    <ul>
+                        <li><strong>變數座標</strong>：控制物體位置。</li>
+                        <li><strong>遊戲迴圈</strong>：讓物體動起來。</li>
+                        <li><strong>碰撞偵測</strong>：判斷遊戲規則。</li>
+                    </ul>
+                    <p>下週，我們將正式開始製作專題：<strong>銀河保衛者</strong>！</p>
+                `
+            }
+        ]
+    },
+    {
+        name: "第 5 週：專題 - 銀河保衛者 (上)",
+        slides: [
+            {
+                title: "第五週：銀河保衛者 (上)",
+                content: `
+                    <p>歡迎來到銀河防衛隊！</p>
+                    <p>這兩週我們將製作一款完整的遊戲：<strong>Galaxy Dodger (太空閃避戰)</strong>。</p>
+                    <div class="step-box">
+                        <h3>任務簡報</h3>
+                        <p>你駕駛著一艘太空船，必須在隕石雨中生存下來。</p>
+                        <ul>
+                            <li><strong>控制</strong>：左右傾斜機身。</li>
+                            <li><strong>敵人</strong>：不斷落下的隕石。</li>
+                            <li><strong>目標</strong>：活下去！</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "Phase 1: 駕駛訓練",
+                content: `
+                    <p>首先，我們要學會控制太空船。</p>
+                    <p>為了保護機身 (還有 Micro:bit 的按鈕)，我們這次使用 **體感控制**。</p>
+                    <div class="step-box">
+                        <h3>加速度計 (Accelerometer)</h3>
+                        <p>還記得第 3 週學過的 X 軸嗎？</p>
+                        <ul>
+                            <li>向左傾斜 -> X 變小 (負數)。</li>
+                            <li>向右傾斜 -> X 變大 (正數)。</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "映射 (Map) 的魔法",
+                content: `
+                    <p>加速度的值是 -1023 到 1023，但我們的螢幕只有 0 到 4。</p>
+                    <p>這時候就需要 **映射 (Map)** 積木。</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-math">映射 <span class="block b-input">加速度 X</span></span></div>
+                        <div class="block-row indent">從 <span class="block b-input">-1023</span> 到 <span class="block b-input">1023</span></div>
+                        <div class="block-row indent">轉換為 <span class="block b-input">0</span> 到 <span class="block b-input">4</span></div>
+                    </div>
+                    <p>這樣我們就能把傾斜的角度，完美對應到 LED 的位置了！</p>
+                `
+            },
+            {
+                title: "實作：太空船控制",
+                content: `
+                    <p>讓我們把太空船顯示在最下面一行 (Y=4)。</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                        <div class="block-row indent"><span class="block b-basic">清除螢幕</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 PlayerX 設為 (映射 加速度 X...)</span></div>
+                        <div class="block-row indent"><span class="block b-led">點亮 x: PlayerX y: 4</span></div>
+                    </div>
+                    <p>試試看右邊的模擬器，調整 <span class="block b-input">Tilt X</span> 滑桿，太空船會動嗎？</p>
+                `
+            },
+            {
+                title: "Phase 2: 隕石來襲",
+                content: `
+                    <p>太空船準備好了，接下來是敵人！</p>
+                    <p>隕石會從最上面 (Y=0) 隨機出現，然後慢慢掉下來。</p>
+                    <div class="step-box">
+                        <h3>隕石變數</h3>
+                        <ul>
+                            <li><strong>RockX</strong>：隨機取數 0 到 4。</li>
+                            <li><strong>RockY</strong>：從 0 開始，慢慢增加。</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "實作：隕石掉落",
+                content: `
+                    <p>我們用一個獨立的迴圈來控制隕石。</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                        <div class="block-row indent"><span class="block b-led">點亮 x: RockX y: RockY</span></div>
+                        <div class="block-row indent"><span class="block b-basic">暫停 500 ms</span></div>
+                        <div class="block-row indent"><span class="block b-led">滅掉 x: RockX y: RockY</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 RockY 改變 1</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "無限隕石 (Looping Rocks)",
+                content: `
+                    <p>隕石掉到底部 (Y > 4) 之後怎麼辦？</p>
+                    <p>我們要讓它「重生」！</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 RockY > 4 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 RockY 設為 0</span> (回到頂部)</div>
+                        <div class="block-row indent"><span class="block b-var">變數 RockX 設為 隨機取數 0~4</span> (換個位置)</div>
+                    </div>
+                    <p>這樣就會有源源不絕的隕石掉下來了。</p>
+                `
+            },
+            {
+                title: "第五週總結",
+                content: `
+                    <p>這週我們完成了遊戲的一半！</p>
+                    <div class="step-box">
+                        <h3>進度檢查</h3>
+                        <ul>
+                            <li>[v] 太空船可以左右移動 (體感控制)。</li>
+                            <li>[v] 隕石會不斷掉落並重生。</li>
+                        </ul>
+                    </div>
+                    <p>但是...現在撞到隕石也不會怎麼樣。下週我們要加入「碰撞偵測」和「計分」，讓遊戲變得完整！</p>
+                `
+            }
+        ]
+    },
+    {
+        name: "第 6 週：專題 - 銀河保衛者 (下)",
+        slides: [
+            {
+                title: "第六週：銀河保衛者 (下)",
+                content: `
+                    <p>歡迎回來，指揮官！</p>
+                    <p>上週我們做出了太空船和隕石，這週我們要讓遊戲變得「危險」且「刺激」。</p>
+                    <div class="step-box">
+                        <h3>本週目標</h3>
+                        <ul>
+                            <li><strong>碰撞偵測</strong>：撞到隕石要爆炸！</li>
+                            <li><strong>計分系統</strong>：閃過一顆隕石得 1 分。</li>
+                            <li><strong>遊戲結束</strong>：顯示最終分數。</li>
+                            <li><strong>難度提升</strong>：越玩越快！</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "危險時刻：碰撞偵測",
+                content: `
+                    <p>什麼時候算「撞到」？</p>
+                    <p>當隕石掉到最下面 (Y=4)，而且剛好在太空船的位置 (RockX == PlayerX) 時。</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 RockY == 4 且 RockX == PlayerX</span></div>
+                        <div class="block-row indent"><span class="block b-basic">遊戲結束 (Game Over)</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "實作：遊戲結束",
+                content: `
+                    <p>在 MakeCode 裡，有一個專門的積木叫做 <span class="block b-basic">遊戲結束</span>。</p>
+                    <p>它會自動幫你：</p>
+                    <ol>
+                        <li>停止遊戲。</li>
+                        <li>顯示 "GAME OVER"。</li>
+                        <li>顯示你的分數。</li>
+                    </ol>
+                    <p>超方便的！</p>
+                `
+            },
+            {
+                title: "計分系統 (Scoring)",
+                content: `
+                    <p>如果隕石掉到底部卻 **沒有** 撞到太空船，那就代表我們閃避成功！</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 RockY > 4 (掉出去了)</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 分數 改變 1</span></div>
+                        <div class="block-row indent"><span class="block b-basic">重設隕石...</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "完整遊戲邏輯",
+                content: `
+                    <p>把所有東西組裝起來：</p>
+                    <div class="step-box">
+                        <h3>遊戲迴圈</h3>
+                        <ol>
+                            <li>移動太空船 (讀取傾斜)。</li>
+                            <li>移動隕石 (Y 改變 1)。</li>
+                            <li><strong>檢查碰撞</strong> (如果撞到 -> 結束)。</li>
+                            <li><strong>檢查得分</strong> (如果閃過 -> 加分)。</li>
+                            <li>暫停 (控制速度)。</li>
+                        </ol>
+                    </div>
+                `
+            },
+            {
+                title: "進階挑戰：加速！",
+                content: `
+                    <p>覺得太簡單了嗎？讓我們讓它越來越快！</p>
+                    <p>我們可以建立一個變數 <span class="block b-var">速度 (Speed)</span>。</p>
+                    <ul>
+                        <li>一開始設為 500ms。</li>
+                        <li>每得 1 分，速度就減少 10ms (變快)。</li>
+                        <li>暫停 (ms) <span class="block b-var">速度</span>。</li>
+                    </ul>
+                    <p>看看你能撐多久！</p>
+                `
+            },
+            {
+                title: "專題展示：銀河保衛者",
+                content: `
+                    <p>現在，試試看右邊的模擬器！</p>
+                    <div class="step-box">
+                        <h3>操作說明</h3>
+                        <ul>
+                            <li>調整 <strong>Tilt X</strong> 滑桿來移動太空船。</li>
+                            <li>閃避掉下來的紅點。</li>
+                            <li>看看你能得幾分！</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "課程結語",
+                content: `
+                    <p>恭喜你完成了 6 週的 Micro:bit 課程！</p>
+                    <p>從點亮第一顆 LED，到完成一個體感遊戲，你已經是一個小小創客了。</p>
+                    <p>Micro:bit 還有很多功能 (無線電、藍牙、音樂...) 等著你去探索。</p>
+                    <p>繼續發揮創意，創造更多好玩的東西吧！</p>
+                `
+            }
+        ]
+    },
 ];
 
 // Navigation State
@@ -1163,6 +1532,167 @@ const slideActions = {
                 }, 1000);
             };
         }
+    },
+    // --- Week 4 Actions ---
+    "實作：移動的光點 (1/2)": () => {
+        mb.clear();
+        mb.plot(2, 2);
+        mb.statusElement.textContent = "變數 X=2, Y=2";
+    },
+    "實作：移動的光點 (2/2)": () => {
+        mb.clear();
+        let x = 2;
+        let y = 2;
+        mb.plot(x, y);
+        mb.statusElement.textContent = "按下 B 鍵向右移動";
+        document.getElementById('btnB').onclick = () => {
+            if (x < 4) {
+                mb.unplot(x, y);
+                x++;
+                mb.plot(x, y);
+                mb.statusElement.textContent = `X=${x}, Y=${y}`;
+            }
+        };
+    },
+    "小遊戲：接金幣 (3/3)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按 A/B 左右移動接金幣";
+        let playerX = 2;
+        let coinX = Math.floor(Math.random() * 5);
+        let coinY = 0;
+
+        mb.plot(playerX, 4);
+        mb.plot(coinX, coinY);
+
+        document.getElementById('btnA').onclick = () => { if (playerX > 0) { mb.unplot(playerX, 4); playerX--; mb.plot(playerX, 4); } };
+        document.getElementById('btnB').onclick = () => { if (playerX < 4) { mb.unplot(playerX, 4); playerX++; mb.plot(playerX, 4); } };
+
+        mb.animationInterval = setInterval(() => {
+            mb.unplot(coinX, coinY);
+            coinY++;
+            if (coinY > 4) {
+                // Check collision
+                if (coinX === playerX) {
+                    mb.showIcon("HEART", true); // Caught!
+                    setTimeout(() => mb.clear(), 500); // Reset visual
+                }
+                // Reset coin
+                coinY = 0;
+                coinX = Math.floor(Math.random() * 5);
+            }
+            mb.plot(playerX, 4); // Redraw player just in case
+            mb.plot(coinX, coinY);
+        }, 500);
+    },
+    // --- Week 5 Actions ---
+    "實作：太空船控制": () => {
+        mb.clear();
+        mb.statusElement.textContent = "調整 Tilt X 滑桿來控制";
+        mb.animationInterval = setInterval(() => {
+            mb.clear();
+            // Map -1023~1023 to 0~4
+            const tiltX = mb.sensors.acceleration.x;
+            let playerX = Math.floor((tiltX + 1023) / 2048 * 5);
+            if (playerX < 0) playerX = 0;
+            if (playerX > 4) playerX = 4;
+
+            mb.plot(playerX, 4);
+            mb.statusElement.textContent = `Tilt: ${tiltX} -> X: ${playerX}`;
+        }, 100);
+    },
+    "實作：隕石掉落": () => {
+        mb.clear();
+        let rockX = 2;
+        let rockY = 0;
+        mb.animationInterval = setInterval(() => {
+            mb.clear();
+            mb.plot(rockX, rockY);
+            rockY++;
+            if (rockY > 4) {
+                rockY = 0;
+                rockX = Math.floor(Math.random() * 5);
+            }
+        }, 500);
+    },
+    // --- Week 6 Actions (Full Game) ---
+    "專題展示：銀河保衛者": () => {
+        mb.clear();
+        mb.statusElement.textContent = "遊戲開始！調整 Tilt X 閃避";
+
+        let score = 0;
+        let rockX = Math.floor(Math.random() * 5);
+        let rockY = 0;
+        let speed = 500;
+        let isGameOver = false;
+
+        mb.animationInterval = setInterval(() => {
+            if (isGameOver) return;
+
+            // 1. Update Player Position
+            const tiltX = mb.sensors.acceleration.x;
+            let playerX = Math.floor((tiltX + 1023) / 2048 * 5);
+            if (playerX < 0) playerX = 0;
+            if (playerX > 4) playerX = 4;
+
+            // Clear screen logic is tricky with persistence, so we redraw everything
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+
+            // Draw Player
+            mb.plot(playerX, 4);
+
+            // Draw Rock
+            mb.plot(rockX, rockY);
+
+            // Logic Update (Move Rock)
+            // We need a separate timer for rock movement or use a counter
+            // For simplicity in this demo, we move rock every tick, but tick is slow?
+            // Let's use a counter to slow down rock relative to player update
+        }, 100);
+
+        // Separate loop for game logic to allow smooth player movement
+        let gameLoop = setInterval(() => {
+            if (isGameOver) return;
+
+            // Move Rock
+            rockY++;
+
+            // Collision Check (at Y=4)
+            // We need current playerX. We can read from sensor directly.
+            const tiltX = mb.sensors.acceleration.x;
+            let playerX = Math.floor((tiltX + 1023) / 2048 * 5);
+            if (playerX < 0) playerX = 0;
+            if (playerX > 4) playerX = 4;
+
+            if (rockY === 4 && rockX === playerX) {
+                isGameOver = true;
+                mb.showIcon("SAD");
+                mb.statusElement.textContent = `GAME OVER! Score: ${score}`;
+                clearInterval(gameLoop);
+                return;
+            }
+
+            // Scoring / Reset Rock
+            if (rockY > 4) {
+                score++;
+                rockY = 0;
+                rockX = Math.floor(Math.random() * 5);
+                mb.statusElement.textContent = `Score: ${score}`;
+
+                // Increase speed (optional, requires clearing and resetting interval which is complex here)
+            }
+
+            // Redraw happens in the render loop above, but we need to ensure sync.
+            // Actually, let's just do simple redraw here for the rock, player loop handles player.
+        }, 600);
+
+        // Store gameLoop to clear it later if needed (mb.stopAnimation only clears animationInterval)
+        // We need to hack mb.stopAnimation to clear this too or attach it to mb
+        mb.extraInterval = gameLoop;
+        const originalStop = mb.stopAnimation.bind(mb);
+        mb.stopAnimation = () => {
+            originalStop();
+            if (mb.extraInterval) clearInterval(mb.extraInterval);
+        };
     }
 };
 
