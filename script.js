@@ -232,6 +232,101 @@ const week1Slides = [
         `
     },
     {
+        title: "深入動畫：影格 (Frame) (1/2)",
+        content: `
+            <p>每一張靜止的圖片，我們稱為一個 **影格 (Frame)**。</p>
+            <p>要做出流暢的動畫，我們需要設計好每一個影格的樣子。</p>
+            <div class="step-box">
+                <h3>範例：閃爍的愛心</h3>
+                <ul>
+                    <li>Frame 1: 大愛心</li>
+                    <li>Frame 2: 滅掉 (或小愛心)</li>
+                    <li>Frame 3: 大愛心</li>
+                </ul>
+            </div>
+        `
+    },
+    {
+        title: "深入動畫：影格 (Frame) (2/2)",
+        content: `
+            <p>如果影格之間變化太大，動畫就會看起來卡卡的。</p>
+            <p>讓我們試著做一個「心跳變快」的效果。</p>
+            <div class="block-container">
+                <div class="block-row"><span class="block b-basic">顯示圖示 ♥</span></div>
+                <div class="block-row"><span class="block b-basic">暫停 500 ms</span></div>
+                <div class="block-row"><span class="block b-basic">顯示圖示 .</span></div>
+                <div class="block-row"><span class="block b-basic">暫停 200 ms</span> (休息時間變短)</div>
+            </div>
+        `
+    },
+    {
+        title: "跑馬燈 (Scrolling Text) (1/3)",
+        content: `
+            <p>除了圖案，Micro:bit 最常用的功能就是顯示文字。</p>
+            <p>因為螢幕只有 5x5，所以文字會像跑馬燈一樣捲動。</p>
+            <div class="step-box">
+                <h3>基本指令</h3>
+                <p><span class="block b-basic">顯示字串 "Hello!"</span></p>
+            </div>
+            <p>注意：只能顯示 **英文** 和 **數字** 喔！(中文太複雜了)</p>
+        `
+    },
+    {
+        title: "跑馬燈 (Scrolling Text) (2/3)",
+        content: `
+            <p>如果你想讓你的名字一直顯示，該放在哪裡？</p>
+            <p>沒錯，就是 <span class="block b-basic">重複無限次</span>。</p>
+            <div class="block-container">
+                <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                <div class="block-row indent"><span class="block b-basic">顯示字串 "Steve"</span></div>
+                <div class="block-row indent"><span class="block b-basic">暫停 1000 ms</span> (跑完休息一下)</div>
+            </div>
+        `
+    },
+    {
+        title: "跑馬燈 (Scrolling Text) (3/3)",
+        content: `
+            <p>我們可以控制跑馬燈的速度嗎？當然可以！</p>
+            <p>這需要用到 <span class="block b-led">更多 > 捲動速度</span> (在模擬器上可能無法明顯看到差異，但在實體機上有用)。</p>
+            <p>試著輸入很長的句子，觀察它怎麼捲動。</p>
+        `
+    },
+    {
+        title: "挑戰：圖形繪製 (1/3)",
+        content: `
+            <p>回到 LED 控制。我們來練習用座標畫出形狀。</p>
+            <div class="step-box">
+                <h3>挑戰 1：畫一個正方形</h3>
+                <p>請點亮四個角落的燈：</p>
+                <ul>
+                    <li>(0, 0), (4, 0)</li>
+                    <li>(0, 4), (4, 4)</li>
+                </ul>
+            </div>
+        `
+    },
+    {
+        title: "挑戰：圖形繪製 (2/3)",
+        content: `
+            <p>接下來難一點點。</p>
+            <div class="step-box">
+                <h3>挑戰 2：畫一個 X</h3>
+                <p>提示：X 的座標有什麼規律？</p>
+                <ul>
+                    <li>(0, 0), (1, 1), (2, 2)... (X 等於 Y)</li>
+                    <li>(4, 0), (3, 1), (2, 2)... (X 加 Y 等於 4)</li>
+                </ul>
+            </div>
+        `
+    },
+    {
+        title: "挑戰：圖形繪製 (3/3)",
+        content: `
+            <p>利用我們剛剛學的規律，你可以畫出很酷的幾何圖形。</p>
+            <p>這就是電腦繪圖 (Computer Graphics) 的基礎喔！即使是最厲害的 3D 遊戲，底層也是這樣一個點一個點畫出來的。</p>
+        `
+    },
+    {
         title: "專題實作：流星燈 (1/3)",
         content: `
             <p>我們來做一個光點從左跑到右的動畫。</p>
@@ -379,10 +474,9 @@ const week2Slides = [
         content: `
             <p>還有一個隱藏功能喔！</p>
             <div class="step-box">
-                <h3>任務 3：A+B 同時按</h3>
+                <h3>任務 3：觸摸 Logo (V2 功能)</h3>
                 <ol>
-                    <li>再拖出一個 <span class="block b-input">當按鈕 A 被按下</span>。</li>
-                    <li>把選單改成 <strong>A+B</strong>。</li>
+                    <li>在 <span class="block b-input">輸入</span> 積木盒找到 <span class="block b-input">當標誌被按下</span>。</li>
                     <li>在裡面放入 <span class="block b-basic">顯示圖示 (鬼臉)</span>。</li>
                 </ol>
             </div>
@@ -496,9 +590,9 @@ const week2Slides = [
         content: `
             <p>如果不小心按錯了怎麼辦？</p>
             <div class="step-box">
-                <h3>挑戰：A+B 扣分</h3>
+                <h3>挑戰：觸摸 Logo 扣分</h3>
                 <ol>
-                    <li>在 <span class="block b-input">當按鈕 A+B 被按下</span> 裡面。</li>
+                    <li>在 <span class="block b-input">當標誌被按下</span> 裡面。</li>
                     <li>放入 <span class="block b-vars">變數 Score 改變 -1</span>。</li>
                 </ol>
             </div>
@@ -561,7 +655,7 @@ const week2Slides = [
                 <li><strong>啟動時</strong>：Score = 0</li>
                 <li><strong>按鈕 A</strong>：Score + 1，如果 Score = 10 顯示 WIN。</li>
                 <li><strong>按鈕 B</strong>：顯示 Score。</li>
-                <li><strong>按鈕 A+B</strong>：Score - 1。</li>
+                <li><strong>觸摸 Logo</strong>：Score - 1。</li>
             </ul>
         `
     },
@@ -598,15 +692,109 @@ const week2Slides = [
         content: `
             <p>這週我們學到了程式設計最重要的概念之一：<strong>變數</strong>。</p>
             <div class="step-box">
-                <h3>重點回顧</h3>
+                <h3>我們學會了：</h3>
                 <ul>
-                    <li>按鈕事件 (A, B, A+B)。</li>
-                    <li>變數的建立、讀取、修改。</li>
-                    <li>邏輯判斷 (If Score = 10)。</li>
-                    <li>搖晃感測器初體驗。</li>
+                    <li>按鈕事件 (Event) 的使用。</li>
+                    <li>如何建立、修改、讀取變數。</li>
+                    <li>基本的邏輯判斷 (如果...那麼)。</li>
                 </ul>
             </div>
-            <p>下週我們要深入研究感測器，用「傾斜」來控制燈光移動！</p>
+            <p>準備好迎接下一週了嗎？我們要開始玩真正的感測器了！</p>
+        `
+    },
+    {
+        title: "進階邏輯：布林值 (Boolean) (1/3)",
+        content: `
+            <p>有些變數比較特別，它只有兩種狀態：<strong>真 (True)</strong> 或 <strong>假 (False)</strong>。</p>
+            <p>這種變數我們稱為 <strong>布林值</strong> (就像是一個開關)。</p>
+            <div class="step-box">
+                <h3>例子：開關燈</h3>
+                <ul>
+                    <li><code>isLightOn = True</code> (燈是亮的)</li>
+                    <li><code>isLightOn = False</code> (燈是暗的)</li>
+                </ul>
+            </div>
+        `
+    },
+    {
+        title: "進階邏輯：切換開關 (2/3)",
+        content: `
+            <p>怎麼做一個「切換」開關？(按一下開，再按一下關)</p>
+            <div class="block-container">
+                <div class="block-row"><span class="block b-input">當按鈕 A 被按下</span></div>
+                <div class="block-row indent"><span class="block b-vars">變數 isLightOn 設為 (非 isLightOn)</span></div>
+            </div>
+            <p><strong>非 (Not)</strong> 是一個很厲害的運算子，它會把 True 變 False，把 False 變 True。</p>
+        `
+    },
+    {
+        title: "進階邏輯：AND 與 OR (3/3)",
+        content: `
+            <p>如果我們要同時滿足兩個條件呢？</p>
+            <div class="step-box">
+                <h3>邏輯運算子</h3>
+                <ul>
+                    <li><strong>且 (AND)</strong>：兩個條件都要成立。 (例如：分數>10 且 時間<60)</li>
+                    <li><strong>或 (OR)</strong>：只要有一個成立就好。 (例如：按 A 或 按 B)</li>
+                </ul>
+            </div>
+            <p>這在複雜的遊戲中非常常用喔！</p>
+        `
+    },
+    {
+        title: "專題加碼：電子骰子 V2 (1/2)",
+        content: `
+            <p>我們上週做過計數器，現在來做一個「真正的」骰子。</p>
+            <div class="step-box">
+                <h3>搖晃骰子</h3>
+                <ol>
+                    <li><span class="block b-input">當被搖晃</span> 時。</li>
+                    <li><span class="block b-basic">顯示圖示 (隨機圖案)</span>... 不對，我們要有數字！</li>
+                    <li><span class="block b-vars">變數 Dice 設為 隨機取數 1 到 6</span>。</li>
+                    <li><span class="block b-basic">顯示數字 Dice</span>。</li>
+                </ol>
+            </div>
+        `
+    },
+    {
+        title: "專題加碼：電子骰子 V2 (2/2)",
+        content: `
+            <p>可是骰子有 1~6，我有時候想作弊怎麼辦？(誤)</p>
+            <div class="step-box">
+                <h3>作弊模式 (Cheat Mode)</h3>
+                <p>我們可以用按鈕來偷改數字。</p>
+                <ul>
+                    <li>按 A 鍵：如果點數 < 6，點數 + 1。</li>
+                    <li>按 B 鍵：如果點數 > 1，點數 - 1。</li>
+                </ul>
+            </div>
+            <p>這樣就可以偷偷控制骰子的大小了！</p>
+        `
+    },
+    {
+        title: "挑戰：雙人計分板 (1/2)",
+        content: `
+            <p>如果有兩個隊伍在比賽，我們可以同時記錄分數嗎？</p>
+            <div class="step-box">
+                <h3>需要兩個變數</h3>
+                <ul>
+                    <li><strong>ScoreA</strong>：記錄 A 隊分數。</li>
+                    <li><strong>ScoreB</strong>：記錄 B 隊分數。</li>
+                </ul>
+            </div>
+        `
+    },
+    {
+        title: "挑戰：雙人計分板 (2/2)",
+        content: `
+            <p>設計一個競速遊戲：</p>
+            <ul>
+                <li><strong>規則</strong>：誰先按滿 10 下 A 或 B，誰就獲勝！</li>
+                <li><strong>A 隊</strong>：按 A 鍵加分。</li>
+                <li><strong>B 隊</strong>：按 B 鍵加分。</li>
+                <li><strong>獲勝</strong>：先到達 10 分的一方顯示 "WIN"。</li>
+            </ul>
+            <p>提示：你需要用 <span class="block b-logic">如果 分數A = 10</span> 來判斷是否獲勝。</p>
         `
     }
 ];
@@ -960,8 +1148,62 @@ const weeks = [
                         <h3>邊界檢查</h3>
                         <p>如果 (X > 4) -> 撞到右牆</p>
                         <p>如果 (X < 0) -> 撞到左牆</p>
+                    <p>我們可以用一個變數 <code>GameState</code> 來記錄現在在哪個階段。</p>
+                `
+            },
+            {
+                title: "遊戲架構：狀態機 (2/2)",
+                content: `
+                    <p>程式碼會長這樣：</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                        <div class="block-row indent"><span class="block b-logic">如果 GameState = 0 (標題)</span></div>
+                        <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示字串 "PLAY"</span></div>
+                        <div class="block-row indent"><span class="block b-logic">否則如果 GameState = 1 (遊戲中)</span></div>
+                        <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">執行遊戲邏輯...</span></div>
+                        <div class="block-row indent"><span class="block b-logic">否則 (結束)</span></div>
+                        <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示分數...</span></div>
                     </div>
-                    <p>在寫遊戲時，我們要隨時檢查這些條件。</p>
+                `
+            },
+            {
+                title: "程式積木化：函式 (Functions)",
+                content: `
+                    <p>當程式越來越長，我們會找不到哪裡是哪裡。</p>
+                    <p>這時候可以把重複這動作包成一個 <strong>函式 (Function)</strong>。</p>
+                    <div class="step-box">
+                        <h3>例子</h3>
+                        <ul>
+                            <li><code>函式 MovePlayer</code>：專門處理玩家移動。</li>
+                            <li><code>函式 MoveEnemy</code>：專門處理敵人移動。</li>
+                            <li><code>函式 CheckCrash</code>：專門檢查撞車。</li>
+                        </ul>
+                    </div>
+                    <p>這樣主程式就會變得非常乾淨好讀！</p>
+                `
+            },
+            {
+                title: "進階碰撞：距離計算",
+                content: `
+                    <p>之前我們用 \`X == X\` 來判斷碰撞。</p>
+                    <p>如果不只是 1 格，而是有體積的物體呢？</p>
+                    <p>我們可以計算兩點之間的 **距離**。</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-math">距離 = ( (X1-X2)² + (Y1-Y2)² ) 的根號</span></div>
+                    </div>
+                    <p>不過...在 5x5 的 Micro:bit 上，直接比對座標通常就夠了 XD</p>
+                `
+            },
+            {
+                title: "專題預備：敵人的 AI",
+                content: `
+                    <p>下週我們要做的敵人，只會傻傻地往下掉嗎？</p>
+                    <p>我們可以給它一點點智慧：</p>
+                    <ul>
+                        <li><strong>追蹤型</strong>：如果玩家在左邊，敵人就往左移。</li>
+                        <li><strong>隨機型</strong>：隨機亂跑。</li>
+                        <li><strong>波浪型</strong>：像蛇一樣扭動前進。</li>
+                    </ul>
                 `
             },
             {
@@ -1385,7 +1627,50 @@ class VirtualMicrobit {
                 "00010",
                 "10100",
                 "01000"
-            ]
+            ],
+            "A": ["00100", "01010", "10001", "11111", "10001"],
+            "B": ["11100", "10010", "11100", "10010", "11100"],
+            "C": ["01110", "10001", "10000", "10001", "01110"],
+            "D": ["11100", "10010", "10010", "10010", "11100"],
+            "E": ["11111", "10000", "11110", "10000", "11111"],
+            "F": ["11111", "10000", "11110", "10000", "10000"],
+            "G": ["01110", "10000", "10111", "10001", "01110"],
+            "H": ["10001", "10001", "11111", "10001", "10001"],
+            "I": ["01110", "00100", "00100", "00100", "01110"],
+            "J": ["00001", "00001", "00001", "10001", "01110"],
+            "K": ["10010", "10100", "11000", "10100", "10010"],
+            "L": ["10000", "10000", "10000", "10000", "11111"],
+            "M": ["10001", "11011", "10101", "10001", "10001"],
+            "N": ["10001", "11001", "10101", "10011", "10001"],
+            "O": ["01110", "10001", "10001", "10001", "01110"],
+            "P": ["11110", "10001", "11110", "10000", "10000"],
+            "Q": ["01110", "10001", "10001", "10010", "01101"],
+            "R": ["11110", "10001", "11110", "10100", "10010"],
+            "S": ["01111", "10000", "01110", "00001", "11110"],
+            "T": ["11111", "00100", "00100", "00100", "00100"],
+            "U": ["10001", "10001", "10001", "10001", "01110"],
+            "V": ["10001", "10001", "10001", "01010", "00100"],
+            "W": ["10001", "10001", "10101", "11011", "10001"],
+            "X": ["10001", "01010", "00100", "01010", "10001"],
+            "Y": ["10001", "10001", "01010", "00100", "00100"],
+            "Z": ["11111", "00010", "00100", "01000", "11111"],
+            "GHOST": [
+                "01110",
+                "11111",
+                "10101",
+                "11111",
+                "10101"
+            ],
+            "0": ["01110", "10001", "10001", "10001", "01110"],
+            "1": ["00100", "01100", "00100", "00100", "01110"],
+            "2": ["01110", "00001", "01110", "10000", "11111"],
+            "3": ["11110", "00001", "01110", "00001", "11110"],
+            "4": ["10010", "10010", "11110", "00010", "00010"],
+            "5": ["11111", "10000", "11110", "00001", "11110"],
+            "6": ["01110", "10000", "11110", "10001", "01110"],
+            "7": ["11111", "00001", "00010", "00100", "00100"],
+            "8": ["01110", "10001", "01110", "10001", "01110"],
+            "9": ["01110", "10001", "01111", "00001", "01110"]
         };
 
         const pattern = icons[iconName];
@@ -1396,6 +1681,32 @@ class VirtualMicrobit {
                     if (row[x] === '1') this.plot(x, y);
                 }
             });
+        }
+    }
+
+    showString(str) {
+        this.stopAnimation();
+        const chars = str.toString().split('');
+        if (chars.length === 1) {
+            this.showIcon(chars[0]);
+        } else {
+            let i = 0;
+            this.statusElement.textContent = `顯示字串: ${str}`;
+            const showNext = () => {
+                if (i >= chars.length) {
+                    i = 0; // Loop or just stop? MakeCode scrolls once usually, but here loop is safer for visibility
+                    setTimeout(() => {
+                        this.clear();
+                        setTimeout(showNext, 500); // Pause before repeating
+                    }, 1000);
+                    return;
+                }
+                this.showIcon(chars[i], true); // true = preventStop to keep interval
+                i++;
+            };
+
+            showNext();
+            this.animationInterval = setInterval(showNext, 800); // Speed of scrolling
         }
     }
 
@@ -1484,9 +1795,31 @@ const slideActions = {
         mb.animateHeartBeat();
     },
     "控制單顆 LED (2/2)": () => mb.animateCoordinates(),
+    "挑戰：圖形繪製 (1/3)": () => { // Square
+        mb.clear();
+        mb.statusElement.textContent = "繪製正方形";
+        for (let x = 0; x < 5; x++) { mb.plot(x, 0); mb.plot(x, 4); }
+        for (let y = 0; y < 5; y++) { mb.plot(0, y); mb.plot(4, y); }
+    },
+    "挑戰：圖形繪製 (2/3)": () => { // Triangle
+        mb.clear();
+        mb.statusElement.textContent = "繪製三角形";
+        mb.plot(2, 0);
+        mb.plot(1, 1); mb.plot(3, 1);
+        mb.plot(0, 2); mb.plot(4, 2);
+        for (let x = 0; x < 5; x++) mb.plot(x, 3);
+    },
+    "挑戰：圖形繪製 (3/3)": () => { // Chessboard
+        mb.clear();
+        mb.statusElement.textContent = "繪製棋盤格";
+        for (let y = 0; y < 5; y++) {
+            for (let x = 0; x < 5; x++) {
+                if ((x + y) % 2 === 0) mb.plot(x, y);
+            }
+        }
+    },
     "專題實作：流星燈 (1/3)": () => {
         mb.clear();
-        mb.plot(0, 2);
         mb.statusElement.textContent = "步驟 1: 點亮 (0, 2)";
     },
     "專題實作：流星燈 (2/3)": () => {
@@ -1503,8 +1836,8 @@ const slideActions = {
         mb.statusElement.textContent = "按下 A 鍵試試看！";
         document.getElementById('btnA').onclick = () => {
             mb.statusElement.textContent = "A 鍵被按下";
-            // Simulate showing string "A" (simplified as a check for now)
-            mb.showIcon("CHECK");
+            // Simulate showing string "A"
+            mb.showIcon("A");
             setTimeout(() => mb.clear(), 1000);
         };
     },
@@ -1513,23 +1846,360 @@ const slideActions = {
         mb.statusElement.textContent = "按下 B 鍵試試看！";
         document.getElementById('btnB').onclick = () => {
             mb.statusElement.textContent = "B 鍵被按下";
-            mb.showIcon("HAPPY");
+            mb.showIcon("B");
             setTimeout(() => mb.clear(), 1000);
         };
     },
     "實作：按鈕測試 (3/3)": () => {
         mb.clear();
-        mb.statusElement.textContent = "試試看觸摸金色 Logo！";
+        mb.statusElement.textContent = "觸摸 Logo 試試看！(V2 功能)";
         const logo = document.getElementById('touchLogo');
         if (logo) {
             logo.onclick = () => {
-                mb.statusElement.textContent = "Logo 被觸摸！";
-                mb.showIcon("HEART");
-                logo.classList.add('active');
-                setTimeout(() => {
-                    mb.clear();
-                    logo.classList.remove('active');
-                }, 1000);
+                mb.statusElement.textContent = "Logo 被觸摸";
+                mb.showIcon("GHOST");
+                setTimeout(() => mb.clear(), 1000);
+            };
+        }
+    },
+    "改變數值": () => {
+        mb.clear();
+        let val = 0;
+        mb.statusElement.textContent = "按 A 鍵加分";
+        document.getElementById('btnA').onclick = () => {
+            val++;
+            mb.statusElement.textContent = `數值: ${val}`;
+            mb.showString(val);
+        };
+    },
+    "測試計數器": () => {
+        mb.clear();
+        let count = 0;
+        mb.statusElement.textContent = "按 A 計數";
+        document.getElementById('btnA').onclick = () => {
+            count++;
+            mb.statusElement.textContent = `計數: ${count}`;
+            mb.showString(count);
+        };
+    },
+    "顯示數值": () => {
+        mb.clear();
+        let score = 0;
+        mb.statusElement.textContent = "按 A 加分 (默數)，按 B 顯示";
+        document.getElementById('btnA').onclick = () => {
+            score++;
+            // No visual feedback as per lesson plan "psychological counting"
+        };
+        document.getElementById('btnB').onclick = () => {
+            mb.statusElement.textContent = `Score: ${score}`;
+            mb.showString(score);
+        };
+    },
+    "進階挑戰：重置遊戲": () => {
+        mb.clear();
+        let count = 0;
+        mb.statusElement.textContent = "按 A 加分，按 Logo 重置";
+
+        const update = () => {
+            mb.statusElement.textContent = `Count: ${count}`;
+            mb.clear();
+            for (let i = 0; i < Math.min(count, 25); i++) mb.plot(i % 5, Math.floor(i / 5));
+        };
+
+        document.getElementById('btnA').onclick = () => {
+            count++;
+            update();
+        };
+
+        const logo = document.getElementById('touchLogo');
+        const mkReset = () => {
+            mb.statusElement.textContent = "已重置！";
+            mb.showIcon("CHECK");
+            setTimeout(() => { mb.clear(); }, 500);
+        };
+
+        if (logo) logo.onclick = mkReset;
+
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) shakeBtn.onclick = mkReset;
+    },
+    "邏輯判斷 (3/3)": () => {
+        mb.clear();
+        let score = 0;
+        mb.statusElement.textContent = "試試看：按 A 鍵加分，加到 10 分會怎樣？";
+
+        document.getElementById('btnA').onclick = () => {
+            score++;
+            if (score === 10) {
+                mb.statusElement.textContent = "贏了！(Score = 10)";
+                mb.showString("WIN");
+            } else {
+                mb.statusElement.textContent = `Score: ${score}`;
+                // Optional: show number
+                mb.showString(score);
+            }
+        };
+
+        document.getElementById('btnB').onclick = () => {
+            // Reset for convenience
+            score = 0;
+            mb.clear();
+            mb.statusElement.textContent = "分數已重置";
+        };
+    },
+
+    "進階邏輯：布林值 (Boolean) (1/3)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "變數 isLightOn = True (開燈)";
+        mb.leds.forEach(row => row.forEach(led => led.classList.add('on')));
+        setTimeout(() => {
+            mb.statusElement.textContent = "變數 isLightOn = False (關燈)";
+            mb.clear();
+        }, 1500);
+    },
+    "進階邏輯：切換開關 (2/3)": () => {
+        mb.clear();
+        let isLightOn = false;
+        mb.statusElement.textContent = "按下 A 鍵切換開關";
+        document.getElementById('btnA').onclick = () => {
+            isLightOn = !isLightOn;
+            if (isLightOn) {
+                mb.leds.forEach(row => row.forEach(led => led.classList.add('on')));
+                mb.statusElement.textContent = "開燈 (True)";
+            } else {
+                mb.clear();
+                mb.statusElement.textContent = "關燈 (False)";
+            }
+        };
+    },
+    "進階邏輯：AND 與 OR (3/3)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按下 A 或 B (OR 測試)";
+        document.getElementById('btnA').onclick = () => {
+            mb.showIcon("CHECK");
+            mb.statusElement.textContent = "A 被按下 (符合 OR)";
+            setTimeout(() => mb.clear(), 500);
+        };
+        document.getElementById('btnB').onclick = () => {
+            mb.showIcon("CHECK");
+            mb.statusElement.textContent = "B 被按下 (符合 OR)";
+            setTimeout(() => mb.clear(), 500);
+            mb.animationInterval = setInterval(() => {
+                const light = mb.sensors.light;
+                mb.statusElement.textContent = `亮度: ${light}`;
+                mb.clear();
+                const cols = Math.floor(light / 52); // 0-255 -> 0-5
+                for (let x = 0; x < cols; x++) {
+                    for (let y = 0; y < 5; y++) mb.plot(x, y);
+                }
+            }, 200);
+        };
+    },
+    "光感測器：小夜燈 (3/3)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "若是天黑 (<50) 自動亮燈";
+        mb.animationInterval = setInterval(() => {
+            const light = mb.sensors.light;
+            if (light < 50) {
+                mb.showIcon("HEART", true); // Keep specific icon
+                mb.statusElement.textContent = `亮度 ${light} (<50): 開燈`;
+            } else {
+                mb.clear();
+                mb.statusElement.textContent = `亮度 ${light} (>=50): 關燈`;
+            }
+        }, 200);
+    },
+    "溫度感測器 (Temperature)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按下 A 鍵測溫";
+        document.getElementById('btnA').onclick = () => {
+            const temp = mb.sensors.temperature;
+            mb.statusElement.textContent = `溫度: ${temp}°C`;
+            // Simple visual: height based on temp
+            mb.clear();
+            const h = Math.floor(temp / 10);
+            for (let y = 4; y >= 4 - h && y >= 0; y--) mb.plot(2, y);
+        };
+    },
+    "加速度計：實作 (3/4)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "向右傾斜看看 (Tilt X > 200)";
+        mb.animationInterval = setInterval(() => {
+            const x = mb.sensors.acceleration.x;
+            if (x > 200) {
+                mb.clear();
+                // Arrow Right
+                mb.plot(2, 0); mb.plot(3, 1); mb.plot(4, 2); mb.plot(3, 3); mb.plot(2, 4);
+                mb.plot(0, 2); mb.plot(1, 2);
+                mb.statusElement.textContent = `X=${x} (向右)`;
+            } else {
+                mb.clear();
+                mb.statusElement.textContent = `X=${x}`;
+            }
+        }, 200);
+    },
+    "加速度計：多重判斷 (4/4)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "左右傾斜 (Tilt X)";
+        mb.animationInterval = setInterval(() => {
+            const x = mb.sensors.acceleration.x;
+            mb.clear();
+            if (x > 200) {
+                // Arrow Right
+                mb.plot(2, 0); mb.plot(3, 1); mb.plot(4, 2); mb.plot(3, 3); mb.plot(2, 4);
+                mb.plot(0, 2); mb.plot(1, 2);
+            } else if (x < -200) {
+                // Arrow Left
+                mb.plot(2, 0); mb.plot(1, 1); mb.plot(0, 2); mb.plot(1, 3); mb.plot(2, 4);
+                mb.plot(4, 2); mb.plot(3, 2);
+            } else {
+                // Dot
+                mb.plot(2, 2);
+            }
+            mb.statusElement.textContent = `X=${x}`;
+        }, 200);
+    },
+    "電子羅盤：實作 (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "調整 Compass 滑桿";
+        mb.animationInterval = setInterval(() => {
+            const deg = mb.sensors.compass;
+            mb.clear();
+            if (deg < 45 || deg > 315) {
+                // Draw N
+                mb.plot(0, 4); mb.plot(0, 3); mb.plot(0, 2); mb.plot(0, 1); mb.plot(0, 0);
+                mb.plot(1, 1); mb.plot(2, 2); mb.plot(3, 3);
+                mb.plot(4, 4); mb.plot(4, 3); mb.plot(4, 2); mb.plot(4, 1); mb.plot(4, 0);
+                mb.statusElement.textContent = `方位: ${deg} (北方)`;
+            } else {
+                mb.statusElement.textContent = `方位: ${deg}`;
+            }
+        }, 200);
+    },
+    "課堂挑戰：實作提示 (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "電子水平儀 (點點跟著動)";
+        mb.animationInterval = setInterval(() => {
+            mb.clear();
+            const ax = mb.sensors.acceleration.x;
+            const ay = mb.sensors.acceleration.y;
+
+            // Simplified Mapping for visual stability
+            let x = 2;
+            if (ax > 300) x = 4;
+            else if (ax > 100) x = 3;
+            else if (ax < -300) x = 0;
+            else if (ax < -100) x = 1;
+
+            let y = 2;
+            if (ay > 300) y = 4;
+            else if (ay > 100) y = 3;
+            else if (ay < -300) y = 0;
+            else if (ay < -100) y = 1;
+
+            mb.plot(x, y);
+            mb.statusElement.textContent = `X:${ax} Y:${ay} -> (${x},${y})`;
+        }, 100);
+    },
+    "專題加碼：電子骰子 V2 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "試著搖晃 Micro:bit！(按 Shake)";
+
+        const shakeAction = () => {
+            mb.clear();
+            let roll = Math.floor(Math.random() * 6) + 1;
+            mb.statusElement.textContent = `搖晃！點數：${roll}`;
+
+            // Show dice pattern
+            if (roll % 2 !== 0) mb.plot(2, 2);
+            if (roll > 1) { mb.plot(0, 0); mb.plot(4, 4); }
+            if (roll > 3) { mb.plot(4, 0); mb.plot(0, 4); }
+            if (roll === 6) { mb.plot(0, 2); mb.plot(4, 2); }
+        };
+
+        // Bind Logo (V2 Style)
+        const logo = document.getElementById('touchLogo');
+        if (logo) logo.onclick = shakeAction;
+
+        // Bind Shake Button (Explicit UI)
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) shakeBtn.onclick = shakeAction;
+    },
+    "專題加碼：電子骰子 V2 (2/2)": () => {
+        mb.clear();
+        let dice = 3;
+        const showDice = (val) => {
+            mb.clear();
+            mb.statusElement.textContent = `作弊模式 - 目前點數：${val}`;
+            if (val % 2 !== 0) mb.plot(2, 2);
+            if (val > 1) { mb.plot(0, 0); mb.plot(4, 4); }
+            if (val > 3) { mb.plot(4, 0); mb.plot(0, 4); }
+            if (val === 6) { mb.plot(0, 2); mb.plot(4, 2); }
+        };
+        showDice(dice);
+
+        document.getElementById('btnA').onclick = () => {
+            if (dice < 6) dice++;
+            showDice(dice);
+        };
+        document.getElementById('btnB').onclick = () => {
+            if (dice > 1) dice--;
+            showDice(dice);
+        };
+    },
+    "挑戰：雙人計分板 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "A隊: 左邊 / B隊: 右邊";
+        mb.plot(0, 2); // Team A indicator
+        mb.plot(4, 2); // Team B indicator
+    },
+    "挑戰：雙人計分板 (2/2)": () => {
+        mb.clear();
+        let scoreA = 0;
+        let scoreB = 0;
+        let gameOver = false;
+        mb.statusElement.textContent = "比賽開始！誰先按滿 10 下就贏！(A vs B)";
+
+        const checkWin = () => {
+            if (scoreA >= 10) {
+                mb.statusElement.textContent = "A 隊獲勝！ (按 Logo 重來)";
+                mb.showString("A WIN");
+                gameOver = true;
+            } else if (scoreB >= 10) {
+                mb.statusElement.textContent = "B 隊獲勝！ (按 Logo 重來)";
+                mb.showString("B WIN");
+                gameOver = true;
+            }
+        };
+
+        document.getElementById('btnA').onclick = () => {
+            if (gameOver) return;
+            scoreA++;
+            mb.statusElement.textContent = `A: ${scoreA}  B: ${scoreB}`;
+            // Visual feedback: simple fill from bottom left
+            if (scoreA <= 5) mb.plot(0, 5 - scoreA);
+            else mb.plot(1, 5 - (scoreA - 5));
+            checkWin();
+        };
+        document.getElementById('btnB').onclick = () => {
+            if (gameOver) return;
+            scoreB++;
+            mb.statusElement.textContent = `A: ${scoreA}  B: ${scoreB}`;
+            // Visual feedback: simple fill from bottom right
+            if (scoreB <= 5) mb.plot(4, 5 - scoreB);
+            else mb.plot(3, 5 - (scoreB - 5));
+            checkWin();
+        };
+
+        const logo = document.getElementById('touchLogo');
+        if (logo) {
+            logo.onclick = () => {
+                // Reset
+                scoreA = 0;
+                scoreB = 0;
+                gameOver = false;
+                mb.clear();
+                mb.statusElement.textContent = "比賽重置！開始！";
             };
         }
     },
@@ -1553,6 +2223,18 @@ const slideActions = {
                 mb.statusElement.textContent = `X=${x}, Y=${y}`;
             }
         };
+    },
+    "小遊戲：接金幣 (2/3)": () => {
+        mb.clear();
+        let coinY = 0;
+        mb.plot(2, coinY);
+        mb.statusElement.textContent = "金幣掉落動畫";
+        mb.animationInterval = setInterval(() => {
+            mb.clear();
+            mb.plot(2, coinY);
+            coinY++;
+            if (coinY > 4) coinY = 0;
+        }, 500);
     },
     "小遊戲：接金幣 (3/3)": () => {
         mb.clear();
