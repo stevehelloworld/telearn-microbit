@@ -983,6 +983,160 @@ const weeks = [
             `
             },
             {
+                title: "溫度感測器：實作 (1/2)",
+                content: `
+                <p>讓我們用溫度感測器做點有趣的事情。</p>
+                <div class="step-box">
+                    <h3>任務 1：溫度顯示器</h3>
+                    <ol>
+                        <li>在 <span class="block b-input">當按鈕 A 被按下</span> 裡面。</li>
+                        <li>放入 <span class="block b-basic">顯示數字</span>。</li>
+                        <li>再把 <span class="block b-input">溫度 (°C)</span> 放入數字框框中。</li>
+                    </ol>
+                </div>
+                <div class="block-container">
+                    <div class="block-row"><span class="block b-input">當按鈕 A 被按下</span></div>
+                    <div class="block-row indent"><span class="block b-basic">顯示數字 <span class="block b-input">溫度 (°C)</span></span></div>
+                </div>
+            `
+            },
+            {
+                title: "溫度感測器：實作 (2/2)",
+                content: `
+                <p>我們來做一個「太熱警報器」。</p>
+                <div class="step-box">
+                    <h3>任務 2：當溫度超過 30°C 就發出警報</h3>
+                    <p>邏輯：如果 (溫度 > 30) 那麼 (顯示火焰圖案)</p>
+                </div>
+                <div class="block-container">
+                    <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                    <div class="block-row indent"><span class="block b-logic">如果 <span class="block b-input">溫度</span> > 30 那麼</span></div>
+                    <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示圖示 (火焰)</span></div>
+                    <div class="block-row indent"><span class="block b-logic">否則</span></div>
+                    <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示圖示 (笑臉)</span></div>
+                </div>
+            `
+            },
+            {
+                title: "搖晃感測器 (Shake) (1/2)",
+                content: `
+                <p>除了傾斜，加速度計還可以偵測「搖晃」這個動作。</p>
+                <div class="step-box">
+                    <h3>搖晃的應用場景</h3>
+                    <ul>
+                        <li><strong>電子骰子</strong>：搖一搖出現隨機數字。</li>
+                        <li><strong>計步器</strong>：走路的震動會觸發。</li>
+                        <li><strong>抓寶遊戲</strong>：搖晃來捕捉怪物。</li>
+                    </ul>
+                </div>
+                <div class="block-container">
+                    <div class="block-row"><span class="block b-input">當姿勢 晃動 發生</span></div>
+                    <div class="block-row indent"><span class="block b-basic">顯示數字 (隨機取數 1 到 6)</span></div>
+                </div>
+            `
+            },
+            {
+                title: "搖晃感測器 (Shake) (2/2)",
+                content: `
+                <p>讓我們做一個更完整的「電子骰子」。</p>
+                <div class="step-box">
+                    <h3>改良版電子骰子</h3>
+                    <ol>
+                        <li>搖晃時，先顯示「?」表示骰子在滾動。</li>
+                        <li>暫停一下 (製造緊張感)。</li>
+                        <li>再顯示隨機數字。</li>
+                    </ol>
+                </div>
+                <div class="block-container">
+                    <div class="block-row"><span class="block b-input">當姿勢 晃動 發生</span></div>
+                    <div class="block-row indent"><span class="block b-basic">顯示字串 "?"</span></div>
+                    <div class="block-row indent"><span class="block b-basic">暫停 500 ms</span></div>
+                    <div class="block-row indent"><span class="block b-vars">變數 Dice 設為 隨機取數 1~6</span></div>
+                    <div class="block-row indent"><span class="block b-basic">顯示數字 <span class="block b-vars">Dice</span></span></div>
+                </div>
+            `
+            },
+            {
+                title: "手勢偵測 (Gestures)",
+                content: `
+                <p>加速度計還能偵測更多手勢喔！</p>
+                <div class="step-box">
+                    <h3>其他手勢</h3>
+                    <ul>
+                        <li><strong>螢幕朝上</strong>：Micro:bit 正面朝上。</li>
+                        <li><strong>螢幕朝下</strong>：Micro:bit 正面朝下 (蓋住)。</li>
+                        <li><strong>向上拋 (Free Fall)</strong>：偵測自由落體。</li>
+                        <li><strong>3G、6G、8G</strong>：偵測強烈震動。</li>
+                    </ul>
+                </div>
+                <p>這些都可以在 <span class="block b-input">當姿勢 XX 發生</span> 的下拉選單中找到。</p>
+            `
+            },
+            {
+                title: "感測器組合應用 (1/2)",
+                content: `
+                <p>最酷的是，我們可以同時使用多個感測器！</p>
+                <div class="step-box">
+                    <h3>範例：智慧夜燈</h3>
+                    <p>在黑暗中「拍手」(搖晃) 就可以開燈。</p>
+                    <ul>
+                        <li><strong>條件 1</strong>：光線 < 50 (夠暗)</li>
+                        <li><strong>條件 2</strong>：被搖晃 (觸發開關)</li>
+                    </ul>
+                </div>
+                <p>這需要結合光感測器和搖晃偵測！</p>
+            `
+            },
+            {
+                title: "感測器組合應用 (2/2)",
+                content: `
+                <p>另一個有趣的例子：會「害羞」的 Micro:bit。</p>
+                <div class="step-box">
+                    <h3>範例：害羞模式</h3>
+                    <ol>
+                        <li>光線很亮 (有人在看) → 顯示害羞表情。</li>
+                        <li>光線很暗 (沒人注意) → 顯示開心表情。</li>
+                        <li>被搖晃 (被嚇到) → 顯示驚訝表情！</li>
+                    </ol>
+                </div>
+                <div class="block-container">
+                    <div class="block-row"><span class="block b-input">當姿勢 晃動 發生</span></div>
+                    <div class="block-row indent"><span class="block b-basic">顯示圖示 (驚訝)</span></div>
+                </div>
+            `
+            },
+            {
+                title: "專題實作：動態溫度計 (1/2)",
+                content: `
+                <p>我們來做一個更實用的溫度計，用圖形來表示溫度高低。</p>
+                <div class="step-box">
+                    <h3>功能設計</h3>
+                    <ul>
+                        <li>溫度 ≤ 15°C：顯示一顆雪花 ❄️</li>
+                        <li>溫度 16~25°C：顯示笑臉 😊</li>
+                        <li>溫度 ≥ 26°C：顯示太陽/火焰 🔥</li>
+                    </ul>
+                </div>
+                <p>這需要用到 <code>if / else if / else</code> 來做多重判斷！</p>
+            `
+            },
+            {
+                title: "專題實作：動態溫度計 (2/2)",
+                content: `
+                <p>來看看程式碼的結構：</p>
+                <div class="block-container">
+                    <div class="block-row"><span class="block b-basic">重複無限次</span></div>
+                    <div class="block-row indent"><span class="block b-logic">如果 <span class="block b-input">溫度</span> ≤ 15 那麼</span></div>
+                    <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示圖示 (雪花)</span></div>
+                    <div class="block-row indent"><span class="block b-logic">否則如果 <span class="block b-input">溫度</span> ≤ 25 那麼</span></div>
+                    <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示圖示 (笑臉)</span></div>
+                    <div class="block-row indent"><span class="block b-logic">否則</span></div>
+                    <div class="block-row indent" style="margin-left: 40px"><span class="block b-basic">顯示圖示 (太陽)</span></div>
+                </div>
+                <p>試著調整模擬器右下角的溫度滑桿，看看圖形會怎麼變化！</p>
+            `
+            },
+            {
                 title: "進階邏輯：巢狀判斷 (Nested If)",
                 content: `
                 <p>有時候一個條件不夠，我們會在 <code>如果</code> 裡面再放一個 <code>如果</code>。</p>
@@ -1097,8 +1251,8 @@ const weeks = [
                     <p>在遊戲中，我們通常把會動的東西叫做「精靈」。</p>
                     <p>要控制一個精靈，我們至少需要兩個變數：</p>
                     <div class="block-container">
-                        <div class="block-row"><span class="block b-var">變數 PlayerX</span> (左右位置)</div>
-                        <div class="block-row"><span class="block b-var">變數 PlayerY</span> (上下位置)</div>
+                        <div class="block-row"><span class="block b-vars">PlayerX</span> (左右位置)</div>
+                        <div class="block-row"><span class="block b-vars">PlayerY</span> (上下位置)</div>
                     </div>
                     <p>只要改變這兩個變數，精靈就會移動！</p>
                 `
@@ -1109,9 +1263,9 @@ const weeks = [
                     <p>我們來試著用變數控制一個光點。</p>
                     <div class="block-container">
                         <div class="block-row"><span class="block b-basic">當啟動時</span></div>
-                        <div class="block-row indent"><span class="block b-var">變數 X 設為 2</span></div>
-                        <div class="block-row indent"><span class="block b-var">變數 Y 設為 2</span></div>
-                        <div class="block-row indent"><span class="block b-led">點亮 x: X y: Y</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 X 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 Y 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-led">繪製 x X y Y</div>
                     </div>
                 `
             },
@@ -1121,9 +1275,9 @@ const weeks = [
                     <p>接著讓它往右跑！</p>
                     <div class="block-container">
                         <div class="block-row"><span class="block b-input">當按鈕 B 被按下</span></div>
-                        <div class="block-row indent"><span class="block b-led">滅掉 x: X y: Y</span> (先擦掉舊的)</div>
-                        <div class="block-row indent"><span class="block b-var">變數 X 改變 1</span> (移動)</div>
-                        <div class="block-row indent"><span class="block b-led">點亮 x: X y: Y</span> (畫上新的)</div>
+                        <div class="block-row indent"><span class="block b-led">取消繪製 x X y Y</span> (先擦掉舊的)</div>
+                        <div class="block-row indent"><span class="block b-vars">變數 X 改變 1</span> (移動)</div>
+                        <div class="block-row indent"><span class="block b-led">繪製 x X y Y</span> (畫上新的)</div>
                     </div>
                     <p>這就是角色移動的基本原理：<strong>擦掉 -> 移動 -> 重畫</strong>。</p>
                 `
@@ -1227,22 +1381,255 @@ const weeks = [
                     <p>金幣掉落的邏輯：</p>
                     <div class="block-container">
                         <div class="block-row"><span class="block b-basic">重複無限次</span></div>
-                        <div class="block-row indent"><span class="block b-led">滅掉 x: CoinX y: CoinY</span></div>
-                        <div class="block-row indent"><span class="block b-var">變數 CoinY 改變 1</span></div>
-                        <div class="block-row indent"><span class="block b-led">點亮 x: CoinX y: CoinY</span></div>
+                        <div class="block-row indent"><span class="block b-led">取消繪製 x CoinX y CoinY</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 CoinY 改變 1</span></div>
+                        <div class="block-row indent"><span class="block b-led">繪製 x CoinX y CoinY</span></div>
                         <div class="block-row indent"><span class="block b-basic">暫停 500 ms</span></div>
                     </div>
                 `
             },
             {
-                title: "小遊戲：接金幣 (3/3)",
+                title: "邊界處理 (Boundary Check)",
                 content: `
-                    <p>最後加上碰撞判斷：</p>
-                    <div class="block-container">
-                        <div class="block-row"><span class="block b-logic">如果 CoinY == 4 且 CoinX == PlayerX</span></div>
-                        <div class="block-row indent"><span class="block b-basic">顯示圖示 (愛心)</span> (接到啦！)</div>
+                    <p>如果玩家一直按右，X 會超過 4 怎麼辦？</p>
+                    <div class="step-box">
+                        <h3>問題與解法</h3>
+                        <p>X 的範圍只能是 0~4，超過會有問題：</p>
+                        <ul>
+                            <li><strong>X > 4</strong>：超出右邊界 → 設回 4</li>
+                            <li><strong>X < 0</strong>：超出左邊界 → 設回 0</li>
+                        </ul>
                     </div>
-                    <p>這就是下週「銀河保衛者」的雛形喔！</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 X > 4 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 X 設為 4</span></div>
+                        <div class="block-row"><span class="block b-logic">如果 X < 0 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 X 設為 0</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "計分系統 (1/2)",
+                content: `
+                    <p>遊戲怎麼能沒有分數呢？</p>
+                    <div class="step-box">
+                        <h3>計分的時機</h3>
+                        <ul>
+                            <li><strong>吃到金幣</strong>：Score + 1</li>
+                            <li><strong>閃過隕石</strong>：Score + 1</li>
+                            <li><strong>存活時間</strong>：每秒 + 1 分</li>
+                        </ul>
+                    </div>
+                    <p>我們需要在 <span class="block b-basic">當啟動時</span> 把 Score 設為 0。</p>
+                `
+            },
+            {
+                title: "計分系統 (2/2)",
+                content: `
+                    <p>什麼時候該顯示分數？</p>
+                    <div class="step-box">
+                        <h3>顯示時機</h3>
+                        <ul>
+                            <li><strong>遊戲結束時</strong>：顯示最終分數。</li>
+                            <li><strong>按按鈕時</strong>：可以隨時查看。</li>
+                            <li><strong>即時顯示</strong>：一直在畫面上更新 (較難)。</li>
+                        </ul>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-input">當按鈕 B 被按下</span></div>
+                        <div class="block-row indent"><span class="block b-basic">顯示數字 <span class="block b-vars">Score</span></span></div>
+                    </div>
+                `
+            },
+            {
+                title: "隨機數的魔法 (1/2)",
+                content: `
+                    <p>遊戲要好玩，就需要「不確定性」。</p>
+                    <div class="step-box">
+                        <h3>隨機取數積木</h3>
+                        <p>在 <span class="block b-math">數學</span> 積木盒中有：</p>
+                        <p><span class="block b-math">隨機取數 0 到 4</span></p>
+                    </div>
+                    <p>每次執行都會給你不同的數字，這讓遊戲充滿驚喜！</p>
+                `
+            },
+            {
+                title: "隨機數的魔法 (2/2)",
+                content: `
+                    <p>隨機數可以用在哪裡？</p>
+                    <div class="step-box">
+                        <h3>遊戲應用</h3>
+                        <ul>
+                            <li><strong>敵人位置</strong>：隨機 X = 0~4</li>
+                            <li><strong>掉落速度</strong>：隨機暫停時間</li>
+                            <li><strong>獎勵出現</strong>：隨機判斷是否出現</li>
+                            <li><strong>方向選擇</strong>：敵人隨機左移或右移</li>
+                        </ul>
+                    </div>
+                    <p>試試看：讓金幣每次從不同位置掉下來！</p>
+                `
+            },
+            {
+                title: "遊戲速度控制",
+                content: `
+                    <p>暫停的時間越短，遊戲就越快越難。</p>
+                    <div class="step-box">
+                        <h3>用變數控制速度</h3>
+                        <ol>
+                            <li>建立變數 <code>Speed</code>，一開始設為 500。</li>
+                            <li>把 <span class="block b-basic">暫停</span> 的時間改成 <span class="block b-vars">Speed</span>。</li>
+                            <li>每過一段時間，讓 Speed 減少一點。</li>
+                        </ol>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">暫停 <span class="block b-vars">Speed</span> ms</span></div>
+                    </div>
+                    <p>這樣遊戲會越來越快，越來越刺激！</p>
+                `
+            },
+            {
+                title: "難度遞增系統",
+                content: `
+                    <p>好遊戲應該是「容易上手、難以精通」。</p>
+                    <div class="step-box">
+                        <h3>難度設計</h3>
+                        <ul>
+                            <li><strong>初期</strong>：速度慢、敵人少。</li>
+                            <li><strong>中期</strong>：速度加快。</li>
+                            <li><strong>後期</strong>：多個敵人、更快速度。</li>
+                        </ul>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 Score > 10 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 Speed 設為 300</span></div>
+                        <div class="block-row"><span class="block b-logic">如果 Score > 20 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 Speed 設為 200</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "遊戲結束處理 (Game Over)",
+                content: `
+                    <p>撞到敵人後，遊戲應該要結束。</p>
+                    <div class="step-box">
+                        <h3>Game Over 流程</h3>
+                        <ol>
+                            <li>把 GameOver 變數設為 <code>true</code>。</li>
+                            <li>顯示一個 X 或骷髏頭。</li>
+                            <li>暫停一下讓玩家看到。</li>
+                            <li>顯示最終分數。</li>
+                        </ol>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-vars">變數 GameOver 設為 真</span></div>
+                        <div class="block-row"><span class="block b-basic">顯示圖示 (X)</span></div>
+                        <div class="block-row"><span class="block b-basic">暫停 1000 ms</span></div>
+                        <div class="block-row"><span class="block b-basic">顯示數字 <span class="block b-vars">Score</span></span></div>
+                    </div>
+                `
+            },
+            {
+                title: "重新開始 (Restart)",
+                content: `
+                    <p>Game Over 之後，玩家會想再玩一次。</p>
+                    <div class="step-box">
+                        <h3>重置所有變數</h3>
+                        <p>按下按鈕 A+B 或搖晃來重新開始。</p>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-input">當姿勢 晃動 發生</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 Score 設為 0</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 Speed 設為 500</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 GameOver 設為 假</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 PlayerX 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-basic">顯示圖示 (打勾)</span></div>
+                    </div>
+                `
+            },
+            {
+                title: "音效 (Sound) (1/2)",
+                content: `
+                    <p>Micro:bit V2 有喇叭，可以發出聲音！</p>
+                    <div class="step-box">
+                        <h3>音樂積木</h3>
+                        <ul>
+                            <li><span class="block b-music">播放音效 (giggle)</span>：播放內建音效。</li>
+                            <li><span class="block b-music">播放旋律 dadadum</span>：播放內建旋律。</li>
+                            <li><span class="block b-music">播放音調 中央 C</span>：自訂音符。</li>
+                        </ul>
+                    </div>
+                    <p>音效可以讓遊戲更有趣喔！</p>
+                `
+            },
+            {
+                title: "音效 (Sound) (2/2)",
+                content: `
+                    <p>在不同情況播放不同音效。</p>
+                    <div class="step-box">
+                        <h3>音效時機</h3>
+                        <ul>
+                            <li><strong>吃到金幣</strong>：開心的叮叮聲。</li>
+                            <li><strong>撞到敵人</strong>：悲傷的聲音。</li>
+                            <li><strong>遊戲開始</strong>：開場音樂。</li>
+                            <li><strong>分數破紀錄</strong>：慶祝音樂。</li>
+                        </ul>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-music">播放音效 (happy)</span> (吃到金幣時)</div>
+                        <div class="block-row"><span class="block b-music">播放音效 (sad)</span> (Game Over 時)</div>
+                    </div>
+                `
+            },
+            {
+                title: "清除畫面技巧",
+                content: `
+                    <p>每一幀都要先把舊的畫面清掉。</p>
+                    <div class="step-box">
+                        <h3>兩種方法</h3>
+                        <ul>
+                            <li><strong>個別清除</strong>：只關掉移動過的燈 (效率高)。</li>
+                            <li><strong>全部清除</strong>：用 <span class="block b-basic">清除螢幕</span> 然後重畫。</li>
+                        </ul>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-basic">清除螢幕</span></div>
+                        <div class="block-row"><span class="block b-led">繪製 x PlayerX y 4</span></div>
+                        <div class="block-row"><span class="block b-led">繪製 x CoinX y CoinY</span></div>
+                    </div>
+                    <p>全部清除比較簡單，但畫面可能會閃爍。</p>
+                `
+            },
+            {
+                title: "練習遊戲：PONG 彈珠 (1/2)",
+                content: `
+                    <p>除了接金幣，我們還可以做一個經典遊戲：PONG。</p>
+                    <div class="step-box">
+                        <h3>遊戲規則</h3>
+                        <ul>
+                            <li>玩家在最下排控制一個球拍 (3 格寬)。</li>
+                            <li>球會在畫面上彈來彈去。</li>
+                            <li>球碰到球拍會反彈，碰到地面就 Game Over。</li>
+                        </ul>
+                    </div>
+                    <p>這需要更複雜的碰撞計算喔！</p>
+                `
+            },
+            {
+                title: "練習遊戲：PONG 彈珠 (2/2)",
+                content: `
+                    <p>球的移動需要兩個變數：方向。</p>
+                    <div class="step-box">
+                        <h3>球的移動邏輯</h3>
+                        <ul>
+                            <li><strong>BallDX</strong>：X 方向 (-1 或 +1)。</li>
+                            <li><strong>BallDY</strong>：Y 方向 (-1 或 +1)。</li>
+                        </ul>
+                        <p>碰到邊界時，改變方向的正負號。</p>
+                    </div>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 BallX ≤ 0 或 BallX ≥ 4 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-vars">變數 BallDX 設為 (BallDX × -1)</span> (反彈)</div>
+                    </div>
                 `
             },
             {
@@ -1253,6 +1640,12 @@ const weeks = [
                         <li><strong>變數座標</strong>：控制物體位置。</li>
                         <li><strong>遊戲迴圈</strong>：讓物體動起來。</li>
                         <li><strong>碰撞偵測</strong>：判斷遊戲規則。</li>
+                    </ul>
+                    <p>還有更多進階技巧：</p>
+                    <ul>
+                        <li>邊界處理、計分系統、難度控制。</li>
+                        <li>遊戲結束與重新開始。</li>
+                        <li>音效與畫面更新。</li>
                     </ul>
                     <p>下週，我們將正式開始製作專題：<strong>銀河保衛者</strong>！</p>
                 `
@@ -1453,7 +1846,7 @@ const weeks = [
                     <ul>
                         <li>一開始設為 500ms。</li>
                         <li>每得 1 分，速度就減少 10ms (變快)。</li>
-                        <li>暫停 (ms) <span class="block b-var">速度</span>。</li>
+                        <li>暫停 <span class="block b-var">速度</span> ms。</li>
                     </ul>
                     <p>看看你能撐多久！</p>
                 `
@@ -1995,16 +2388,58 @@ const slideActions = {
             }, 200);
         };
     },
-    "光感測器：小夜燈 (3/3)": () => {
+    "光感測器 (Light Level) (1/3)": () => {
         mb.clear();
-        mb.statusElement.textContent = "若是天黑 (<50) 自動亮燈";
+        mb.statusElement.textContent = "調整光線滑桿觀察數值變化";
         mb.animationInterval = setInterval(() => {
             const light = mb.sensors.light;
+            mb.statusElement.textContent = `目前亮度: ${light}`;
+            // Show light level as bar graph
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+            const cols = Math.floor(light / 52); // 0-255 -> 0-5
+            for (let x = 0; x < cols; x++) {
+                for (let y = 0; y < 5; y++) mb.plot(x, y);
+            }
+        }, 200);
+    },
+    "光感測器：實作 (2/3)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "調整光線滑桿，數字會即時更新";
+        mb.animationInterval = setInterval(() => {
+            const light = mb.sensors.light;
+            mb.statusElement.textContent = `亮度數字: ${light}`;
+            // Clear LEDs without stopping animation
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+            // Show as bar graph (always works, no stopAnimation call)
+            const cols = Math.floor(light / 52); // 0-255 -> 0-5
+            for (let x = 0; x < cols; x++) {
+                for (let y = 0; y < 5; y++) mb.plot(x, y);
+            }
+        }, 200);
+    },
+    "光感測器：小夜燈 (3/3)": () => {
+        mb.statusElement.textContent = "若是天黑 (<50) 自動亮燈";
+        // Heart pattern
+        const heartPattern = [
+            "01010",
+            "11111",
+            "11111",
+            "01110",
+            "00100"
+        ];
+        mb.animationInterval = setInterval(() => {
+            const light = mb.sensors.light;
+            // Clear LEDs without calling stopAnimation
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
             if (light < 50) {
-                mb.showIcon("HEART", true); // Keep specific icon
-                mb.statusElement.textContent = `亮度 ${light} (<50): 開燈`;
+                // Draw heart directly
+                heartPattern.forEach((row, y) => {
+                    for (let x = 0; x < 5; x++) {
+                        if (row[x] === '1') mb.plot(x, y);
+                    }
+                });
+                mb.statusElement.textContent = `亮度 ${light} (<50): 開燈 ❤️`;
             } else {
-                mb.clear();
                 mb.statusElement.textContent = `亮度 ${light} (>=50): 關燈`;
             }
         }, 200);
@@ -2374,6 +2809,422 @@ const slideActions = {
         mb.stopAnimation = () => {
             originalStop();
             if (mb.extraInterval) clearInterval(mb.extraInterval);
+        };
+    },
+
+    // --- New Week 3 Slides ---
+    "溫度感測器：實作 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按下 A 鍵顯示溫度";
+        document.getElementById('btnA').onclick = () => {
+            const temp = mb.sensors.temperature;
+            mb.statusElement.textContent = `溫度: ${temp}°C`;
+            mb.showString(temp);
+        };
+    },
+    "溫度感測器：實作 (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "調整溫度滑桿，觀察變化";
+        mb.animationInterval = setInterval(() => {
+            const temp = mb.sensors.temperature;
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+            if (temp > 30) {
+                // Fire pattern
+                mb.plot(2, 4); mb.plot(1, 3); mb.plot(2, 3); mb.plot(3, 3);
+                mb.plot(0, 2); mb.plot(2, 2); mb.plot(4, 2);
+                mb.plot(1, 1); mb.plot(3, 1); mb.plot(2, 0);
+                mb.statusElement.textContent = `${temp}°C - 太熱了！🔥`;
+            } else {
+                // Draw happy face directly (avoid showIcon which calls stopAnimation)
+                mb.plot(1, 1); mb.plot(3, 1); // eyes
+                mb.plot(0, 3); mb.plot(4, 3); // mouth corners
+                mb.plot(1, 4); mb.plot(2, 4); mb.plot(3, 4); // mouth
+                mb.statusElement.textContent = `${temp}°C - 舒適 😊`;
+            }
+        }, 300);
+    },
+    "搖晃感測器 (Shake) (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按 Shake 按鈕搖骰子！";
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) {
+            shakeBtn.onclick = () => {
+                const roll = Math.floor(Math.random() * 6) + 1;
+                mb.statusElement.textContent = `骰子結果: ${roll}`;
+                mb.showString(roll);
+            };
+        }
+    },
+    "搖晃感測器 (Shake) (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "改良版骰子 - 按 Shake";
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) {
+            shakeBtn.onclick = () => {
+                mb.showString("?");
+                mb.statusElement.textContent = "骰子滾動中...";
+                setTimeout(() => {
+                    const roll = Math.floor(Math.random() * 6) + 1;
+                    mb.statusElement.textContent = `結果: ${roll}`;
+                    mb.showString(roll);
+                }, 500);
+            };
+        }
+    },
+    "手勢偵測 (Gestures)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "試試不同手勢 (Shake, Logo)";
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) {
+            shakeBtn.onclick = () => {
+                mb.showIcon("CHECK");
+                mb.statusElement.textContent = "搖動偵測！";
+            };
+        }
+        const logo = document.getElementById('touchLogo');
+        if (logo) {
+            logo.onclick = () => {
+                mb.showIcon("GHOST");
+                mb.statusElement.textContent = "Logo 觸摸！";
+            };
+        }
+    },
+    "感測器組合應用 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "智慧夜燈：光線<50 + 搖晃 = 開燈";
+        let isLightOn = false;
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) {
+            shakeBtn.onclick = () => {
+                const light = mb.sensors.light;
+                if (light < 50) {
+                    isLightOn = !isLightOn;
+                    if (isLightOn) {
+                        mb.leds.forEach(row => row.forEach(led => led.classList.add('on')));
+                        mb.statusElement.textContent = `光線${light} - 開燈！`;
+                    } else {
+                        mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+                        mb.statusElement.textContent = `光線${light} - 關燈`;
+                    }
+                } else {
+                    mb.statusElement.textContent = `光線${light} - 太亮了，不需要燈`;
+                }
+            };
+        }
+    },
+    "感測器組合應用 (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "害羞模式：調整光線和搖晃";
+        const shakeBtn = document.getElementById('btnShake');
+        mb.animationInterval = setInterval(() => {
+            const light = mb.sensors.light;
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+            if (light > 150) {
+                // Shy face - eyes looking away
+                mb.plot(0, 1); mb.plot(4, 1);
+                mb.plot(1, 3); mb.plot(2, 3); mb.plot(3, 3);
+                mb.statusElement.textContent = `光線${light} - 害羞 😳`;
+            } else {
+                // Draw happy face directly
+                mb.plot(1, 1); mb.plot(3, 1); // eyes
+                mb.plot(0, 3); mb.plot(4, 3); // mouth corners
+                mb.plot(1, 4); mb.plot(2, 4); mb.plot(3, 4); // mouth
+                mb.statusElement.textContent = `光線${light} - 開心 😊`;
+            }
+        }, 300);
+        if (shakeBtn) {
+            shakeBtn.onclick = () => {
+                mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+                // Surprised face
+                mb.plot(1, 1); mb.plot(3, 1);
+                mb.plot(2, 3);
+                mb.statusElement.textContent = "驚訝！😮";
+            };
+        }
+    },
+    "專題實作：動態溫度計 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "溫度計：調整溫度滑桿";
+    },
+    "專題實作：動態溫度計 (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "動態溫度計 - 調整溫度滑桿";
+        mb.animationInterval = setInterval(() => {
+            const temp = mb.sensors.temperature;
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+            if (temp <= 15) {
+                // Snowflake
+                mb.plot(2, 0); mb.plot(2, 4);
+                mb.plot(0, 2); mb.plot(4, 2);
+                mb.plot(1, 1); mb.plot(3, 1); mb.plot(1, 3); mb.plot(3, 3);
+                mb.plot(2, 2);
+                mb.statusElement.textContent = `${temp}°C - 好冷 ❄️`;
+            } else if (temp <= 25) {
+                // Draw happy face directly
+                mb.plot(1, 1); mb.plot(3, 1); // eyes
+                mb.plot(0, 3); mb.plot(4, 3); // mouth corners
+                mb.plot(1, 4); mb.plot(2, 4); mb.plot(3, 4); // mouth
+                mb.statusElement.textContent = `${temp}°C - 舒適 😊`;
+            } else {
+                // Sun
+                mb.plot(2, 2);
+                mb.plot(2, 0); mb.plot(2, 4); mb.plot(0, 2); mb.plot(4, 2);
+                mb.plot(0, 0); mb.plot(4, 0); mb.plot(0, 4); mb.plot(4, 4);
+                mb.statusElement.textContent = `${temp}°C - 好熱 🔥`;
+            }
+        }, 300);
+    },
+
+    // --- New Week 4 Slides ---
+    "邊界處理 (Boundary Check)": () => {
+        mb.clear();
+        let x = 2;
+        mb.plot(x, 2);
+        mb.statusElement.textContent = "按 A/B 移動，會碰到邊界";
+        document.getElementById('btnA').onclick = () => {
+            mb.unplot(x, 2);
+            x--;
+            if (x < 0) x = 0; // Boundary check
+            mb.plot(x, 2);
+            mb.statusElement.textContent = `X = ${x}${x === 0 ? ' (碰到左邊界!)' : ''}`;
+        };
+        document.getElementById('btnB').onclick = () => {
+            mb.unplot(x, 2);
+            x++;
+            if (x > 4) x = 4; // Boundary check
+            mb.plot(x, 2);
+            mb.statusElement.textContent = `X = ${x}${x === 4 ? ' (碰到右邊界!)' : ''}`;
+        };
+    },
+    "計分系統 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "計分時機展示";
+        mb.plot(2, 2); // Coin
+        mb.plot(2, 4); // Player
+    },
+    "計分系統 (2/2)": () => {
+        mb.clear();
+        let score = 0;
+        mb.statusElement.textContent = "按 A 得分，按 B 顯示分數";
+        document.getElementById('btnA').onclick = () => {
+            score++;
+            mb.showIcon("CHECK");
+            mb.statusElement.textContent = `+1 分！`;
+            setTimeout(() => mb.clear(), 300);
+        };
+        document.getElementById('btnB').onclick = () => {
+            mb.showString(score);
+            mb.statusElement.textContent = `目前分數: ${score}`;
+        };
+    },
+    "隨機數的魔法 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按 A 產生隨機數 0~4";
+        document.getElementById('btnA').onclick = () => {
+            const rand = Math.floor(Math.random() * 5);
+            mb.clear();
+            mb.plot(rand, 2);
+            mb.statusElement.textContent = `隨機結果: ${rand}`;
+        };
+    },
+    "隨機數的魔法 (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "金幣隨機掉落";
+        let coinX = Math.floor(Math.random() * 5);
+        let coinY = 0;
+        mb.animationInterval = setInterval(() => {
+            mb.clear();
+            mb.plot(coinX, coinY);
+            coinY++;
+            if (coinY > 4) {
+                coinY = 0;
+                coinX = Math.floor(Math.random() * 5);
+                mb.statusElement.textContent = `新金幣出現在 X=${coinX}`;
+            }
+        }, 400);
+    },
+    "遊戲速度控制": () => {
+        mb.clear();
+        let speed = 500;
+        let y = 0;
+        mb.statusElement.textContent = `Speed: ${speed}ms - 按 A 加速`;
+
+        const animate = () => {
+            mb.animationInterval = setInterval(() => {
+                mb.clear();
+                mb.plot(2, y);
+                y++;
+                if (y > 4) y = 0;
+            }, speed);
+        };
+        animate();
+
+        document.getElementById('btnA').onclick = () => {
+            if (speed > 100) {
+                speed -= 100;
+                clearInterval(mb.animationInterval);
+                animate();
+                mb.statusElement.textContent = `Speed: ${speed}ms - 更快了！`;
+            }
+        };
+    },
+    "難度遞增系統": () => {
+        mb.clear();
+        let score = 0;
+        let speed = 500;
+        let y = 0;
+        mb.statusElement.textContent = "按 A 得分，分數越高速度越快";
+
+        const animate = () => {
+            mb.animationInterval = setInterval(() => {
+                mb.clear();
+                mb.plot(2, y);
+                y++;
+                if (y > 4) y = 0;
+            }, speed);
+        };
+        animate();
+
+        document.getElementById('btnA').onclick = () => {
+            score++;
+            if (score > 10 && speed > 300) {
+                speed = 300;
+                clearInterval(mb.animationInterval);
+                animate();
+            } else if (score > 20 && speed > 200) {
+                speed = 200;
+                clearInterval(mb.animationInterval);
+                animate();
+            }
+            mb.statusElement.textContent = `Score: ${score}, Speed: ${speed}ms`;
+        };
+    },
+    "遊戲結束處理 (Game Over)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按 A 模擬撞到敵人";
+        document.getElementById('btnA').onclick = () => {
+            mb.showIcon("SAD");
+            mb.statusElement.textContent = "GAME OVER!";
+            setTimeout(() => {
+                mb.showString("5"); // Show score
+                mb.statusElement.textContent = "最終分數: 5";
+            }, 1000);
+        };
+    },
+    "重新開始 (Restart)": () => {
+        mb.clear();
+        let gameOver = true;
+        mb.showIcon("SAD");
+        mb.statusElement.textContent = "Game Over - 按 Shake 重新開始";
+
+        const shakeBtn = document.getElementById('btnShake');
+        if (shakeBtn) {
+            shakeBtn.onclick = () => {
+                gameOver = false;
+                mb.showIcon("CHECK");
+                mb.statusElement.textContent = "遊戲重置！準備開始！";
+                setTimeout(() => {
+                    mb.clear();
+                    mb.plot(2, 4); // Player back
+                }, 500);
+            };
+        }
+    },
+    "音效 (Sound) (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "模擬音效 - 按 A 播放開心音效";
+        document.getElementById('btnA').onclick = () => {
+            mb.showIcon("HAPPY");
+            mb.statusElement.textContent = "🎵 播放音效: Happy!";
+        };
+    },
+    "音效 (Sound) (2/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "按 A = 開心音效, 按 B = 傷心音效";
+        document.getElementById('btnA').onclick = () => {
+            mb.showIcon("HAPPY");
+            mb.statusElement.textContent = "🎵 Happy! (吃到金幣)";
+        };
+        document.getElementById('btnB').onclick = () => {
+            mb.showIcon("SAD");
+            mb.statusElement.textContent = "🎵 Sad... (Game Over)";
+        };
+    },
+    "清除畫面技巧": () => {
+        mb.clear();
+        let playerX = 2;
+        let coinY = 0;
+        mb.statusElement.textContent = "全部清除再重畫";
+
+        mb.animationInterval = setInterval(() => {
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on'))); // Clear all
+            mb.plot(playerX, 4); // Redraw player
+            mb.plot(2, coinY); // Redraw coin
+            coinY++;
+            if (coinY > 4) coinY = 0;
+        }, 300);
+
+        document.getElementById('btnA').onclick = () => {
+            if (playerX > 0) playerX--;
+        };
+        document.getElementById('btnB').onclick = () => {
+            if (playerX < 4) playerX++;
+        };
+    },
+    "練習遊戲：PONG 彈珠 (1/2)": () => {
+        mb.clear();
+        mb.statusElement.textContent = "PONG 遊戲概念展示";
+        // Draw paddle
+        mb.plot(1, 4); mb.plot(2, 4); mb.plot(3, 4);
+        // Draw ball
+        mb.plot(2, 2);
+    },
+    "練習遊戲：PONG 彈珠 (2/2)": () => {
+        mb.clear();
+        let ballX = 2, ballY = 1;
+        let ballDX = 1, ballDY = 1;
+        let paddleX = 1;
+        mb.statusElement.textContent = "按 A/B 移動球拍";
+
+        mb.animationInterval = setInterval(() => {
+            mb.leds.forEach(row => row.forEach(led => led.classList.remove('on')));
+
+            // Draw paddle
+            for (let i = 0; i < 3; i++) {
+                if (paddleX + i >= 0 && paddleX + i <= 4) {
+                    mb.plot(paddleX + i, 4);
+                }
+            }
+
+            // Move ball
+            ballX += ballDX;
+            ballY += ballDY;
+
+            // Bounce off walls
+            if (ballX <= 0 || ballX >= 4) ballDX *= -1;
+            if (ballY <= 0) ballDY *= -1;
+
+            // Bounce off paddle
+            if (ballY >= 3 && ballX >= paddleX && ballX <= paddleX + 2) {
+                ballDY *= -1;
+                mb.statusElement.textContent = "反彈！";
+            }
+
+            // Game over
+            if (ballY > 4) {
+                ballY = 1;
+                ballX = 2;
+                mb.statusElement.textContent = "球掉了！重來";
+            }
+
+            mb.plot(ballX, ballY);
+        }, 350);
+
+        document.getElementById('btnA').onclick = () => {
+            if (paddleX > 0) paddleX--;
+        };
+        document.getElementById('btnB').onclick = () => {
+            if (paddleX < 2) paddleX++;
         };
     }
 };
