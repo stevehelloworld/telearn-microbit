@@ -636,6 +636,16 @@ pre {
 }
 
 /* Violet */
+.b-var {
+    background-color: #DC143C;
+}
+
+/* Red - Variables */
+.b-game {
+    background-color: #B4009E;
+}
+
+/* Dark Magenta - Game */
 
 .block-container {
     background-color: rgba(255, 255, 255, 0.05);
