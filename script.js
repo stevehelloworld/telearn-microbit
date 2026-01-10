@@ -1832,148 +1832,153 @@ const weeks = [
                 title: "第六週：心電感應乒乓 🏓",
                 content: `
                     <p>本週進入<strong>雙人對戰</strong>模式！</p>
-                    <p>我們要用<strong>兩台 Micro:bit</strong> 透過無線電通訊，製作一個乒乓球遊戲。</p>
+                    <p>我們要用<strong>兩台 Micro:bit</strong> 透過廣播通訊，製作一個乒乓球遊戲。</p>
                     <div class="step-box">
-                        <h3>遊戲概念</h3>
+                        <h3>遊戲規則</h3>
                         <ul>
-                            <li>每個玩家用<strong>傾斜</strong>控制自己的球拍</li>
-                            <li>球會在兩台 Micro:bit 間<strong>無線傳送</strong></li>
-                            <li>接不到球就輸一分！</li>
+                            <li>每人有 <strong>5 條命</strong>（score = 5）</li>
+                            <li>用<strong>傾斜</strong>控制球拍</li>
+                            <li>按 <strong>A 鍵</strong>發球（輪到你時才能發）</li>
+                            <li>沒接到球就 <strong>扣 1 分</strong>，對方 <strong>加 1 分</strong></li>
+                            <li>分數歸零就<strong>遊戲結束</strong>！</li>
                         </ul>
                     </div>
-                `
-            },
-            {
-                title: "無線電基礎",
-                content: `
-                    <p>Micro:bit 內建<strong>無線電 (Radio)</strong> 功能，可以互相通訊！</p>
-                    <div class="block-container">
-                        <div class="block-row"><span class="block b-basic">當啟動時</span></div>
-                        <div class="block-row indent"><span class="block b-input">無線電設定群組 1</span></div>
-                    </div>
-                    <div class="step-box">
-                        <h3>重要概念</h3>
-                        <ul>
-                            <li><strong>群組號碼</strong>：同一組的 Micro:bit 才能通訊</li>
-                            <li>群組 1~255 可選，跟別組不會互相干擾</li>
-                            <li>⚠️ 兩台 Micro:bit 要設<strong>同一個群組</strong>！</li>
-                        </ul>
-                    </div>
-                `
-            },
-            {
-                title: "發送與接收",
-                content: `
-                    <p>無線電有兩個主要動作：</p>
-                    <div class="block-container">
-                        <div class="block-row"><span class="block b-input">無線傳送數字</span> <span class="block b-var">數字</span> ← 發送</div>
-                    </div>
-                    <div class="block-container">
-                        <div class="block-row"><span class="block b-input">當收到無線接收數字 receivedNumber</span> ← 接收</div>
-                        <div class="block-row indent">... 處理收到的數字</div>
-                    </div>
-                    <p>我們可以用數字代表球的 X 位置！</p>
                 `
             },
             {
                 title: "遊戲變數設定",
                 content: `
-                    <p>乒乓遊戲需要這些變數：</p>
+                    <p>在「當啟動時」設定所有變數：</p>
                     <div class="block-container">
                         <div class="block-row"><span class="block b-basic">當啟動時</span></div>
-                        <div class="block-row indent"><span class="block b-input">無線電設定群組 1</span></div>
-                        <div class="block-row indent"><span class="block b-var">變數 paddleX 設為 2</span> ← 球拍位置</div>
-                        <div class="block-row indent"><span class="block b-var">變數 ballX 設為 2</span> ← 球的 X</div>
-                        <div class="block-row indent"><span class="block b-var">變數 ballY 設為 -1</span> ← 球的 Y（-1 表示沒球）</div>
-                        <div class="block-row indent"><span class="block b-var">變數 score 設為 0</span></div>
+                        <div class="block-row indent"><span class="block b-input">廣播群組設為 1</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 paddleX 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 BallX 設為 2</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 BallY 設為 -1</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 score 設為 5</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 turn 設為 1</span></div>
                     </div>
+                    <p>💡 <strong>turn = 1</strong> 表示輪到你發球！</p>
                 `
             },
             {
-                title: "球拍控制",
+                title: "接收廣播（事件）",
                 content: `
-                    <p>用傾斜控制球拍（跟銀河保衛者一樣）：</p>
+                    <p>收到廣播時，要判斷是「球」還是「得分訊號」：</p>
                     <div class="block-container">
-                        <div class="block-row"><span class="block b-basic">重複無限次</span></div>
-                        <div class="block-row indent"><span class="block b-basic">清空畫面</span></div>
-                        <div class="block-row indent"><span class="block b-var">paddleX 設為</span> <span class="block b-math">無條件捨去(對應 加速度X...)</span></div>
-                        <div class="block-row indent"><span class="block b-led">點亮 x: paddleX y: 4</span> ← 畫球拍</div>
+                        <div class="block-row"><span class="block b-input">當收到廣播數字 receivedNumber</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 turn 設為 0</span></div>
+                        <div class="block-row indent"><span class="block b-logic">如果 receivedNumber = 5 那麼</span></div>
+                        <div class="block-row indent indent"><span class="block b-var">變數 score 改變 1</span> ← 對方沒接到，你得分！</div>
+                        <div class="block-row indent indent"><span class="block b-basic">顯示 圖示 ...</span></div>
+                        <div class="block-row indent indent"><span class="block b-var">變數 turn 設為 1</span></div>
+                        <div class="block-row indent"><span class="block b-logic">否則</span></div>
+                        <div class="block-row indent indent"><span class="block b-var">變數 BallX 設為 receivedNumber</span></div>
+                        <div class="block-row indent indent"><span class="block b-var">變數 BallY 設為 0</span></div>
                     </div>
                 `
             },
             {
-                title: "發球機制",
+                title: "訊號說明：5 = 得分",
                 content: `
-                    <p>按 A 鍵發球給對方：</p>
+                    <div class="step-box">
+                        <h3>為什麼用 5？</h3>
+                        <p>因為球的 X 座標只會是 0~4，所以我們用 <strong>5</strong> 當作特殊訊號！</p>
+                        <ul>
+                            <li>收到 0~4 → 正常的球，從該 X 座標掉下來</li>
+                            <li>收到 5 → 對方沒接到球，你得 1 分！</li>
+                        </ul>
+                    </div>
+                    <p>💡 收到 5 後 turn 變成 1，代表輪到你發球了！</p>
+                `
+            },
+            {
+                title: "發球（按 A 鍵）",
+                content: `
+                    <p>只有<strong>輪到你</strong>時才能發球：</p>
                     <div class="block-container">
                         <div class="block-row"><span class="block b-input">當按鈕 A 被按下</span></div>
-                        <div class="block-row indent"><span class="block b-input">無線傳送數字</span> <span class="block b-var">paddleX</span></div>
-                        <div class="block-row indent"><span class="block b-basic">顯示圖示 ✓</span></div>
+                        <div class="block-row indent"><span class="block b-logic">如果 turn = 1 那麼</span></div>
+                        <div class="block-row indent indent"><span class="block b-input">廣播 發送數字</span> <span class="block b-math">隨機取數 0 到 4</span></div>
+                        <div class="block-row indent indent"><span class="block b-var">變數 turn 設為 0</span></div>
+                        <div class="block-row indent indent"><span class="block b-basic">顯示 圖示 ✓</span></div>
                     </div>
-                    <p>發送的數字 = 球的 X 位置（從你的球拍位置發出）</p>
+                    <p>⚠️ 發球位置是<strong>隨機</strong>的，不是從你的位置！</p>
                 `
             },
             {
-                title: "接收球",
-                content: `
-                    <p>當收到對方傳來的球：</p>
-                    <div class="block-container">
-                        <div class="block-row"><span class="block b-input">當收到無線接收數字 receivedNumber</span></div>
-                        <div class="block-row indent"><span class="block b-var">ballX 設為 receivedNumber</span></div>
-                        <div class="block-row indent"><span class="block b-var">ballY 設為 0</span> ← 球從頂部出現</div>
-                    </div>
-                    <p>球會從你的螢幕頂部掉下來！</p>
-                `
-            },
-            {
-                title: "球的移動",
-                content: `
-                    <p>如果有球在螢幕上，讓它往下掉：</p>
-                    <div class="block-container">
-                        <div class="block-row indent"><span class="block b-logic">如果 ballY >= 0 那麼</span></div>
-                        <div class="block-row indent indent"><span class="block b-led">點亮 x: ballX y: ballY</span></div>
-                        <div class="block-row indent indent"><span class="block b-basic">暫停 300 毫秒</span></div>
-                        <div class="block-row indent indent"><span class="block b-var">ballY 改變 1</span></div>
-                    </div>
-                `
-            },
-            {
-                title: "接球判斷",
-                content: `
-                    <p>球掉到底部時，判斷有沒有接到：</p>
-                    <div class="block-container">
-                        <div class="block-row indent"><span class="block b-logic">如果 ballY = 4 那麼</span></div>
-                        <div class="block-row indent indent"><span class="block b-logic">如果 ballX = paddleX 那麼</span></div>
-                        <div class="block-row indent indent indent"><span class="block b-input">無線傳送數字 paddleX</span> ← 打回去！</div>
-                        <div class="block-row indent indent"><span class="block b-logic">否則</span></div>
-                        <div class="block-row indent indent indent"><span class="block b-var">score 改變 -1</span> ← 沒接到，扣分</div>
-                        <div class="block-row indent indent"><span class="block b-var">ballY 設為 -1</span> ← 球消失</div>
-                    </div>
-                `
-            },
-            {
-                title: "顯示分數",
+                title: "顯示分數（按 B 鍵）",
                 content: `
                     <p>按 B 鍵顯示目前分數：</p>
                     <div class="block-container">
                         <div class="block-row"><span class="block b-input">當按鈕 B 被按下</span></div>
-                        <div class="block-row indent"><span class="block b-basic">顯示數字</span> <span class="block b-var">score</span></div>
+                        <div class="block-row indent"><span class="block b-basic">顯示 數字</span> <span class="block b-var">score</span></div>
                     </div>
-                    <p>分數 > 0 表示你贏對方，< 0 表示你輸！</p>
+                    <p>隨時按 B 鍵可以查看剩餘生命！</p>
                 `
             },
             {
-                title: "完整遊戲流程",
+                title: "遊戲迴圈結構總覽",
+                content: `
+                    <p>完整的迴圈結構（用 L1, L2... 表示層級）：</p>
+                    <div class="block-container" style="font-size: 0.9em;">
+                        <div class="block-row"><strong>L0</strong> <span class="block b-basic">重複無限次</span></div>
+                        <div class="block-row"><strong>└ L1</strong> <span class="block b-logic">如果 按鈕B不成立 那麼</span></div>
+                        <div class="block-row"><strong>　　├</strong> <span class="block b-basic">清空畫面</span></div>
+                        <div class="block-row"><strong>　　├</strong> <span class="block b-var">paddleX 設為...</span> + 邊界檢查</div>
+                        <div class="block-row"><strong>　　├</strong> <span class="block b-led">點亮 paddleX, 4</span> (球拍)</div>
+                        <div class="block-row"><strong>　　└ L2</strong> <span class="block b-logic">如果 BallY >= 0 那麼</span></div>
+                        <div class="block-row"><strong>　　　　├</strong> <span class="block b-led">點亮 BallX, BallY</span> (球)</div>
+                        <div class="block-row"><strong>　　　　├</strong> <span class="block b-basic">暫停 300 毫秒</span></div>
+                        <div class="block-row"><strong>　　　　├</strong> <span class="block b-var">BallY 改變 1</span></div>
+                        <div class="block-row"><strong>　　　　└ L3</strong> <span class="block b-logic">如果 BallY = 4 那麼</span> (見下頁)</div>
+                    </div>
+                `
+            },
+            {
+                title: "接球判斷（L3 層）",
+                content: `
+                    <p>這整段都在「如果 BallY >= 0」的<strong>裡面</strong>：</p>
+                    <div class="block-container" style="font-size: 0.9em;">
+                        <div class="block-row"><strong>L3</strong> <span class="block b-logic">如果 BallY = 4 那麼</span></div>
+                        <div class="block-row"><strong>　└ L4</strong> <span class="block b-logic">如果 BallX = paddleX 那麼</span></div>
+                        <div class="block-row"><strong>　　　├</strong> <span class="block b-input">廣播 發送數字 隨機0~4</span> ✅接到</div>
+                        <div class="block-row"><strong>　　否則</strong></div>
+                        <div class="block-row"><strong>　　　├</strong> <span class="block b-input">廣播 發送數字 5</span> ❌沒接到</div>
+                        <div class="block-row"><strong>　　　├</strong> <span class="block b-var">score 改變 -1</span></div>
+                        <div class="block-row"><strong>　　　└ L5</strong> <span class="block b-logic">如果 score <= 0</span></div>
+                        <div class="block-row"><strong>　　　　　└</strong> <span class="block b-game">遊戲結束</span></div>
+                        <div class="block-row"><strong>　└</strong> <span class="block b-var">BallY 設為 -1</span> (球消失)</div>
+                    </div>
+                `
+            },
+            {
+                title: "結構重點整理",
+                content: `
+                    <div class="step-box">
+                        <h3>關鍵巢狀關係</h3>
+                        <ul>
+                            <li><strong>暫停 300 毫秒</strong> 在 L2 裡面 → 沒球時不會暫停</li>
+                            <li><strong>BallY 改變 1</strong> 在 L2 裡面 → 沒球時不會增加</li>
+                            <li><strong>如果 BallY = 4</strong> 在 L2 裡面 → 只有球掉到底才檢查</li>
+                            <li><strong>BallY = -1</strong> 在 L3 裡面 → 只有碰到底才消失</li>
+                        </ul>
+                    </div>
+                    <p>💡 這樣確保沒有「幽靈球」出現！</p>
+                `
+            },
+            {
+                title: "回合制流程圖",
                 content: `
                     <div class="step-box">
                         <h3>遊戲流程</h3>
                         <ol>
-                            <li>兩台 Micro:bit 設定<strong>同一群組</strong></li>
-                            <li>任一方按 <strong>A 鍵發球</strong></li>
-                            <li>球從對方螢幕頂部掉下來</li>
-                            <li>對方用<strong>傾斜</strong>接球</li>
-                            <li>接到 → 球飛回來；沒接到 → 對方扣分</li>
-                            <li>按 <strong>B 鍵</strong>看分數</li>
+                            <li>開始時 turn=1，可以按 A 發球</li>
+                            <li>發球後 turn=0，等對方回球</li>
+                            <li>收到球時 turn=0，要接球</li>
+                            <li>接到球 → 自動打回去</li>
+                            <li>沒接到 → 發送 5，對方得分並獲得發球權</li>
+                            <li>收到 5 → 加分，turn=1，換你發球</li>
                         </ol>
                     </div>
                 `
@@ -1986,29 +1991,14 @@ const weeks = [
                         <h3>測試步驟</h3>
                         <ol>
                             <li>把程式下載到<strong>兩台</strong> Micro:bit</li>
-                            <li>確認群組號碼相同</li>
-                            <li>一人按 A 發球</li>
-                            <li>另一人傾斜接球</li>
+                            <li>確認群組號碼相同（都是 1）</li>
+                            <li>任一方按 A 發球</li>
+                            <li>接到球會自動打回去</li>
+                            <li>沒接到對方會得分並獲得發球權</li>
+                            <li>按 B 看分數，分數歸零就輸了！</li>
                         </ol>
                     </div>
-                    <p>💡 模擬器無法測試無線電功能！</p>
-                `
-            },
-            {
-                title: "進階挑戰",
-                content: `
-                    <div class="step-box">
-                        <h3>挑戰 1：加入音效</h3>
-                        <p>接到球時播放音效！</p>
-                    </div>
-                    <div class="step-box">
-                        <h3>挑戰 2：隨機發球位置</h3>
-                        <p>球不要從原位發出，隨機選位置！</p>
-                    </div>
-                    <div class="step-box">
-                        <h3>挑戰 3：加速模式</h3>
-                        <p>每來回一次，球掉落速度加快！</p>
-                    </div>
+                    <p>💡 模擬器無法測試廣播功能！</p>
                 `
             },
             {
@@ -2022,11 +2012,10 @@ const weeks = [
                             <li>✓ 按鈕與感測器輸入</li>
                             <li>✓ 變數與邏輯判斷</li>
                             <li>✓ 迴圈與遊戲設計</li>
-                            <li>✓ 無線電通訊</li>
+                            <li>✓ 廣播通訊與回合制</li>
                         </ul>
                     </div>
                     <p>從點亮一顆 LED 到製作雙人對戰遊戲，你已經是 Micro:bit 達人了！🚀</p>
-                    <p>繼續發揮創意，創造更多好玩的東西吧！</p>
                 `
             }
         ]
