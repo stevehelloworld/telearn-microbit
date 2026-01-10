@@ -1699,7 +1699,13 @@ const weeks = [
                     <div class="block-container">
                         <div class="block-row"><span class="block b-var">變數 PlayerX 設為</span> <span class="block b-math">無條件捨去</span> <span class="block b-math">對應 <span class="block b-input">加速度感測值 (mg) x</span> 從低 -512 到高 512 至低 0 到高 4</span></div>
                     </div>
-                    <p>⚠️ <strong>重要</strong>：外面要包「無條件捨去」，確保 PlayerX 是整數！</p>
+                    <p>❗ 然後要加上<strong>邊界檢查</strong>，確保 PlayerX 不會超出 0~4：</p>
+                    <div class="block-container">
+                        <div class="block-row"><span class="block b-logic">如果 PlayerX > 4 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 PlayerX 設為 4</span></div>
+                        <div class="block-row"><span class="block b-logic">如果 PlayerX < 0 那麼</span></div>
+                        <div class="block-row indent"><span class="block b-var">變數 PlayerX 設為 0</span></div>
+                    </div>
                 `
             },
             {
@@ -1710,6 +1716,8 @@ const weeks = [
                         <div class="block-row"><span class="block b-basic">重複無限次</span></div>
                         <div class="block-row indent"><span class="block b-basic">清空畫面</span></div>
                         <div class="block-row indent"><span class="block b-var">PlayerX 設為</span> <span class="block b-math">無條件捨去(對應...)</span></div>
+                        <div class="block-row indent"><span class="block b-logic">如果 PlayerX > 4 那麼</span> <span class="block b-var">PlayerX 設為 4</span></div>
+                        <div class="block-row indent"><span class="block b-logic">如果 PlayerX < 0 那麼</span> <span class="block b-var">PlayerX 設為 0</span></div>
                         <div class="block-row indent"><span class="block b-led">點亮 x: PlayerX y: 4</span> ← 太空船</div>
                         <div class="block-row indent"><span class="block b-led">點亮 x: RockX y: RockY</span> ← 隕石</div>
                     </div>
@@ -1758,12 +1766,13 @@ const weeks = [
                         <div class="block-row"><span class="block b-basic">重複無限次</span></div>
                         <div class="block-row indent">① <span class="block b-basic">清空畫面</span></div>
                         <div class="block-row indent">② <span class="block b-var">PlayerX 設為...</span></div>
-                        <div class="block-row indent">③ <span class="block b-led">點亮太空船</span></div>
-                        <div class="block-row indent">④ <span class="block b-led">點亮隕石</span></div>
-                        <div class="block-row indent">⑤ <span class="block b-logic">碰撞檢測 → 遊戲結束</span></div>
-                        <div class="block-row indent">⑥ <span class="block b-basic">暫停 speed 毫秒</span></div>
-                        <div class="block-row indent">⑦ <span class="block b-var">RockY 改變 1</span></div>
-                        <div class="block-row indent">⑧ <span class="block b-logic">如果 RockY > 4，重生+計分</span></div>
+                        <div class="block-row indent">③ <span class="block b-logic">邊界檢查 (>4 或 <0)</span></div>
+                        <div class="block-row indent">④ <span class="block b-led">點亮太空船</span></div>
+                        <div class="block-row indent">⑤ <span class="block b-led">點亮隕石</span></div>
+                        <div class="block-row indent">⑥ <span class="block b-logic">碰撞檢測 → 遊戲結束</span></div>
+                        <div class="block-row indent">⑦ <span class="block b-basic">暫停 speed 毫秒</span></div>
+                        <div class="block-row indent">⑧ <span class="block b-var">RockY 改變 1</span></div>
+                        <div class="block-row indent">⑨ <span class="block b-logic">如果 RockY > 4，重生+計分</span></div>
                     </div>
                 `
             },
